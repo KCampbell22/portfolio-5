@@ -98,7 +98,7 @@ body{
 }
 
 #bio button{
-    width: 86%;
+    width: 80%;
     text-decoration: underline var(--underline-color);
     text-underline-offset: 10px;
 
@@ -231,6 +231,9 @@ letter-spacing: -2px;
 
 .project-card{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
   
@@ -254,15 +257,21 @@ letter-spacing: -2px;
     left: 0;
     width: 100%;
     height: 100%; /* Cover the entire .project-card element */
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black overlay */
+    background-color: rgba(0, 0, 0, 0.214); /* Add a semi-transparent overlay */
     color: white; /* Make text white */
     text-align: center; /* Center text */
     padding: 10px; /* Add some padding */
   }
+  /*TODO - add hover animation effect to project links*/
   .project-links {
     display: none; /* Hide by default */
   }
   
+  /* blur effect on the project card, but not the project-links */
+    .project-card:hover .project-image {
+        filter: blur(5px);
+    }
+
 .project-links {
     background-color: #f4f4f4;
     padding: 10px;
@@ -278,14 +287,14 @@ letter-spacing: -2px;
   .project-links a{
     color: var(--grey);
     border-radius: 6px;
-    border: 2px solid rgba(255, 255, 255, 0.717);
     background-color: rgba(9, 9, 9, 0.614);
     padding: 10px;
     width: 150px;
-    text-decoration: none;
     font-size: 14px;
     margin-bottom: 5px;
     font-family: 'SpaceGrotesk-Regular';
+    text-decoration: underline var(--underline-color);
+    text-underline-offset: 10px;
   }
   
     .project-links a:hover{
@@ -316,7 +325,69 @@ footer section{
     }
 
     #description{
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .project-image{
+        max-width: 300px;
+    }
+    .small-grey{
+        font-size: 1rem;
+        min-height: 190px;
+    }
+
+    #headshot{
+        height: 350px;
+    }
+
+    #description{
+        font-size: 2rem;
+    }
+
+    .project-links{
+        display: flex;
+        height: auto;
+        position: relative;
+        background-color: transparent;
+    }
+
+    .project-links a{
+        width: 100%;
+        margin-bottom: 0;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-radius: 0;
+        background-color: transparent;
+    }
+
+    .project-links a:hover{
+        background-color: transparent;
+
+    }
+
+    .project-links a:active{
+        background-color: transparent;
+        position: relative;
+
+    }
+
+    .project-links a:focus{
+        background-color: transparent;
+        position: relative;
+    }
+    .project-links a:hover{
+        background-color: transparent;
+    }
+
+    .project-card:hover .project-links{
+        background-color: transparent;
+        position: relative;
+        height: auto;
+
     }
     
 }
@@ -334,7 +405,7 @@ footer section{
         max-width: 250px;
     }
     #description{
-        font-size: 2.3rem;
+        font-size: 2rem;
     }
 
     #bio{
@@ -380,7 +451,21 @@ footer section{
     nav{
         justify-content: center !important;
     }
+
+    #contact-box{
+        flex-direction: column;
+    }
+
+    #contact-column{
+        align-items: center !important;
+    }
+
+    #submit-button{
+        margin-left: 0 !important;
+        margin-bottom: 3rem;
+    }
 }
+
 
 .skill-box{
     display: flex;
@@ -425,7 +510,7 @@ input[type="text"], input[type="email"]{
 #submit-button{
     border: none;
     background-color: transparent;
-    border-bottom: 1px solid var(--success-green);
+    border-bottom: 1px solid var(--underline-color);
     width: auto;
     margin-left: auto;
     font-family: 'SpaceGrotesk-Regular';
@@ -434,12 +519,25 @@ input[type="text"], input[type="email"]{
 
 #submit-button:hover{
     background-color: transparent;
-    color: var(--success-green);
+    color: var(--underline-color);
 }
 
 #submit-button:focus{
     background-color: transparent;
-    color: var(--success-green);
+    color: var(--underline-color);
     outline: none;
     box-shadow: none;
+}
+
+@media only screen and (max-width: 320px) {
+    #description{
+        font-size: 1.7rem;
+    }
+    .project-card h3, .project-card p{
+        width: 15ch;
+    }
+
+
+
+    
 }

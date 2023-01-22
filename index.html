@@ -195,10 +195,10 @@
   </section>
   
   <footer class="position-relative">
-    <section class="container d-flex align-items-center">
+    <section class="container d-flex align-items-center" id="contact-box">
      
-      <div class="row d-flex flex-row-reverse ">
-        <div class="d-flex flex-column align-items-start justify-content-center">
+      <div class="row d-flex flex-row-reverse flex-sm-column mt-4" >
+        <div class="d-flex flex-column align-items-start justify-content-center" id="contact-column" >
           <div class="">
             <h4 class="text-white pl-3" id="contact-tag">Contact</h4>
           </div>
@@ -216,6 +216,7 @@
           <div class="form-group">
             <label for="Email">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Your email">
+            <span id="email-error" class="text-danger"></span>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
@@ -225,9 +226,13 @@
         </form>
       </div>
     </section>
-    <nav style="bottom: 0;" id="footer-nav" class="position-absulute bottom-0">
-      <h2 style="bottom: 0; margin-left: 1rem;"class="navbar-brand text-white position-absolute bottom-0">kadecampbell</h2>
+    <nav style="bottom: 0;" id="footer-nav" class=" bottom-0">
+      <h2 style="bottom: 0; margin-left: 1rem;"class="navbar-brand text-white bottom-0">kadecampbell</h2>
     </nav>
   </footer>
+
+  <script src="./index.js"></script>
+  <script src="https://unpkg.com/@sendgrid/mail@7.2.0/dist/sendgrid-mail.min.js"></script>
+
 </body>
 </html>
