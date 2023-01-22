@@ -102,10 +102,10 @@ body{
     text-decoration: underline #00B4FF;
     text-decoration-color: #00B4FF;
 
-    -webkit-text-decoration: underline #00B4FF;
+    -webkit-text-decoration: underline solid #00B4FF;
     -webkit-text-decoration-color: #00B4FF;
-    text-underline-offset: 10px;
-
+    text-underline-offset: 8px;
+    height: 20px;
 }
 
 #bio button:hover{
