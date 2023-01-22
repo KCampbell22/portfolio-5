@@ -556,7 +556,7 @@ input[type="text"], input[type="email"]{
     .project-card h3, .project-card p{
         width: 15ch;
     }
-    .navbar{
+    nav{
         flex-direction: column;
     }
 
