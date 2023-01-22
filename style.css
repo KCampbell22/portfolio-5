@@ -99,21 +99,21 @@ body{
 
 #bio button{
     width: 80%;
-    text-decoration: underline var(--underline-color);
-    text-decoration-color: var(--underline-color);
+    text-decoration: underline #00B4FF;
+    text-decoration-color: #00B4FF;
 
-    -webkit-text-decoration: underline var(--underline-color);
-    -webkit-text-decoration-color: var(--underline-color);
+    -webkit-text-decoration: underline #00B4FF;
+    -webkit-text-decoration-color: #00B4FF;
     text-underline-offset: 10px;
 
 }
 
 #bio button:hover{
-    text-decoration: underline var(--underline-color);
-    text-decoration-color: var(--underline-color);
+    text-decoration: underline #00B4FF;
+    text-decoration-color: #00B4FF;
 
     text-underline-offset: 10px;
-    color: var(--underline-color);
+    color: #00B4FF;
 }
 
 #bio button:active{
@@ -139,8 +139,8 @@ body{
 
 
 .blue-underline{
-    text-decoration: underline var(--underline-color);
-    text-decoration-color: var(--underline-color);
+    text-decoration: underline #00B4FF;
+    text-decoration-color: #00B4FF;
 
     text-decoration-skip-ink: none;
     text-underline-offset: 8px;
@@ -187,24 +187,24 @@ letter-spacing: -2px;
     font-size: 1.5rem;
     width: 86%;
     color: white;
-    text-decoration: underline solid var(--underline-color);
-    text-decoration-color: var(--underline-color);
+    text-decoration: underline solid #00B4FF;
+    text-decoration-color: #00B4FF;
 
-    -webkit-text-decoration: underline solid var(--underline-color);
-    -webkit-text-decoration-color: var(--underline-color);
+    -webkit-text-decoration: underline solid #00B4FF;
+    -webkit-text-decoration-color: #00B4FF;
 
     text-underline-offset: 10px;
 }
 
 .contact:hover{
     width: 86%;
-    text-decoration: underline var(--underline-color);
-    text-decoration-color: var(--underline-color);
+    text-decoration: underline #00B4FF;
+    text-decoration-color: #00B4FF;
 
     text-underline-offset: 10px;
     background-color: transparent;
     box-shadow: none;
-    color: var(--underline-color);
+    color: #00B4FF;
 }
 
 .contact:active, .contact:focus{
@@ -308,11 +308,11 @@ letter-spacing: -2px;
     font-size: 14px;
     margin-bottom: 5px;
     font-family: 'SpaceGrotesk-Regular';
-    text-decoration: underline var(--underline-color);
-    text-decoration-color: var(--underline-color);
+    text-decoration: underline #00B4FF;
+    text-decoration-color: #00B4FF;
 
-    -webkit-text-decoration: underline var(--underline-color);
-    -webkit-text-decoration-color: var(--underline-color);
+    -webkit-text-decoration: underline #00B4FF;
+    -webkit-text-decoration-color: #00B4FF;
     text-underline-offset: 10px;
   }
   
@@ -529,7 +529,7 @@ input[type="text"], input[type="email"]{
 #submit-button{
     border: none;
     background-color: transparent;
-    border-bottom: 1px solid var(--underline-color);
+    border-bottom: 1px solid #00B4FF;
     width: auto;
     margin-left: auto;
     font-family: 'SpaceGrotesk-Regular';
@@ -538,12 +538,12 @@ input[type="text"], input[type="email"]{
 
 #submit-button:hover{
     background-color: transparent;
-    color: var(--underline-color);
+    color: #00B4FF;
 }
 
 #submit-button:focus{
     background-color: transparent;
-    color: var(--underline-color);
+    color: #00B4FF;
     outline: none;
     box-shadow: none;
 }
