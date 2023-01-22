@@ -365,9 +365,17 @@ footer section{
     }
     .skill-box{
         text-align: center;
+
     }
 
-    
+    .navbar-brand{
+        margin: 0;
+    }    
+
+    #socials{
+        padding: 0;
+        justify-content: center;
+    }
 }
 
 .skill-box{
