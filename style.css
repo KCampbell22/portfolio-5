@@ -102,6 +102,8 @@ body{
     text-decoration: underline var(--underline-color);
     text-decoration-color: var(--underline-color);
 
+    -webkit-text-decoration: underline var(--underline-color);
+    -webkit-text-decoration-color: var(--underline-color);
     text-underline-offset: 10px;
 
 }
@@ -308,6 +310,9 @@ letter-spacing: -2px;
     font-family: 'SpaceGrotesk-Regular';
     text-decoration: underline var(--underline-color);
     text-decoration-color: var(--underline-color);
+
+    -webkit-text-decoration: underline var(--underline-color);
+    -webkit-text-decoration-color: var(--underline-color);
     text-underline-offset: 10px;
   }
   
