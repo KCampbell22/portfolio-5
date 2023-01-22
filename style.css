@@ -339,7 +339,6 @@ footer section{
 
     #bio{
         width: 85%;
-        flex-direction: column;
     }
     .project-image{
         margin: 1rem;
