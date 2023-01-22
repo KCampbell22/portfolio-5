@@ -188,6 +188,9 @@ letter-spacing: -2px;
     text-decoration: underline var(--underline-color);
     text-decoration-color: var(--underline-color);
 
+    -webkit-text-decoration: underline var(--underline-color);
+    -webkit-text-decoration-color: var(--underline-color);
+
     text-underline-offset: 10px;
 }
 
