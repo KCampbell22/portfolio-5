@@ -100,12 +100,16 @@ body{
 #bio button{
     width: 80%;
     text-decoration: underline var(--underline-color);
+    text-decoration-color: var(--underline-color);
+
     text-underline-offset: 10px;
 
 }
 
 #bio button:hover{
     text-decoration: underline var(--underline-color);
+    text-decoration-color: var(--underline-color);
+
     text-underline-offset: 10px;
     color: var(--underline-color);
 }
@@ -134,6 +138,8 @@ body{
 
 .blue-underline{
     text-decoration: underline var(--underline-color);
+    text-decoration-color: var(--underline-color);
+
     text-decoration-skip-ink: none;
     text-underline-offset: 8px;
     /* text underline needs to be behind the text */
@@ -180,12 +186,16 @@ letter-spacing: -2px;
     width: 86%;
     color: white;
     text-decoration: underline var(--underline-color);
+    text-decoration-color: var(--underline-color);
+
     text-underline-offset: 10px;
 }
 
 .contact:hover{
     width: 86%;
     text-decoration: underline var(--underline-color);
+    text-decoration-color: var(--underline-color);
+
     text-underline-offset: 10px;
     background-color: transparent;
     box-shadow: none;
@@ -294,6 +304,7 @@ letter-spacing: -2px;
     margin-bottom: 5px;
     font-family: 'SpaceGrotesk-Regular';
     text-decoration: underline var(--underline-color);
+    text-decoration-color: var(--underline-color);
     text-underline-offset: 10px;
   }
   
