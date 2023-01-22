@@ -185,10 +185,10 @@ letter-spacing: -2px;
     font-size: 1.5rem;
     width: 86%;
     color: white;
-    text-decoration: underline var(--underline-color);
+    text-decoration: underline solid var(--underline-color);
     text-decoration-color: var(--underline-color);
 
-    -webkit-text-decoration: underline var(--underline-color);
+    -webkit-text-decoration: underline solid var(--underline-color);
     -webkit-text-decoration-color: var(--underline-color);
 
     text-underline-offset: 10px;
