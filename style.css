@@ -557,7 +557,7 @@ input[type="text"], input[type="email"]{
         width: 15ch;
     }
     nav{
-        flex-direction: column;
+        flex-direction: column !important;
     }
 
 
