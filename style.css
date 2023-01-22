@@ -141,7 +141,8 @@ body{
 .blue-underline{
     text-decoration: underline #00B4FF;
     text-decoration-color: #00B4FF;
-
+    -webkit-text-decoration: underline solid #00B4FF;
+    -webkit-text-decoration-color: #00B4FF;
     text-decoration-skip-ink: none;
     text-underline-offset: 8px;
     /* text underline needs to be behind the text */
