@@ -302,7 +302,7 @@ footer section{
 
 }
 
-@media screen and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
     .project-image{
         max-width: 400px;
     }
@@ -321,7 +321,7 @@ footer section{
     
 }
 
-@media screen and (max-width: 425px) {
+@media  only screen and (max-width: 425px) {
    
     #headshot{
         width: auto;
@@ -374,7 +374,11 @@ footer section{
 
     #socials{
         padding: 0;
-        justify-content: center;
+        margin: 1px;
+    }
+
+    nav{
+        justify-content: center !important;
     }
 }
 
