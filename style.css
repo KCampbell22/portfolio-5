@@ -643,3 +643,9 @@ input[type="text"], input[type="email"]{
     border-bottom: 1px solid var(--success-green);
     
 }
+
+
+.col-12{
+    padding-left: 0;
+    padding-right: 0;
+}
