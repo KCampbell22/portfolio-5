@@ -84,7 +84,7 @@ p, li, a, a:hover {
 body{
     background-color: #151515;
     width: 90%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 
