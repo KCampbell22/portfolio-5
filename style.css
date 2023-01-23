@@ -238,11 +238,20 @@ letter-spacing: -2px;
     justify-content: space-between;
     align-items: center;
     padding-inline-start: 5px;
-    max-width: 200px;
+    min-width: 190px;
+
 }
  
 #Projects-tag{
     width: 80%;
+    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+#Projects-tag button{
+    text-align: right;
 }
 
 .project-card{
@@ -298,6 +307,9 @@ letter-spacing: -2px;
     display: none;
   }
 
+  .project-card ul{
+
+  }
 
   
   .project-links a{
@@ -374,6 +386,16 @@ footer section{
         background-color: transparent;
     }
 
+    .project-card ul{
+        justify-content: center;
+        width: 100%;
+    }
+
+    .project-card ul li{
+        margin: 0 10px;
+
+    }
+
     .project-links a{
         width: 100%;
         margin-bottom: 0;
@@ -389,6 +411,10 @@ footer section{
 
     }
 
+
+    .project-card:hover .project-links {
+
+    }
     .project-links a:active{
         background-color: transparent;
         position: relative;
@@ -398,6 +424,7 @@ footer section{
     .project-links a:focus{
         background-color: transparent;
         position: relative;
+
     }
     .project-links a:hover{
         background-color: transparent;
@@ -407,7 +434,17 @@ footer section{
         background-color: transparent;
         position: relative;
         height: auto;
+        flex-direction: row;
 
+    }
+
+    .project-card:hover .project-image{
+        filter: blur(0px);
+    }
+
+    .project-card h3{
+        text-align: center;
+        width: 100%;
     }
     
 }
@@ -493,6 +530,10 @@ footer section{
         font-size: 1rem;
         min-height: 150px;
     }
+
+    form{
+        
+    }
 }
 
 
@@ -506,6 +547,9 @@ input[type="text"], input[type="email"]{
     border-bottom: 1px solid var(--grey);
     color: var(--grey);
     background-color: transparent;
+}
+.form{
+    width: 50%;
 }
 
 .form-control{
@@ -558,6 +602,27 @@ input[type="text"], input[type="email"]{
     box-shadow: none;
 }
 
+@media only screen and (max-width: 375px){
+    #Projects-tag{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #Projects-tag button {
+        text-align: center;
+    }
+
+    .project-card{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #project-header-box h2{
+        text-align: center;
+    }
+}
+
 @media only screen and (max-width: 320px) {
     #description{
         font-size: 1.7rem;
@@ -570,5 +635,10 @@ input[type="text"], input[type="email"]{
     }
 
 
+    
+}
+
+.valid{
+    border-bottom: 1px solid var(--success-green);
     
 }
