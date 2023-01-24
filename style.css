@@ -33,6 +33,9 @@ nav{
 
 }
 
+main{
+    width: 80%;
+}
 #socials{
     display: flex;
     flex-direction: row;
