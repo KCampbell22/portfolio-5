@@ -33,9 +33,8 @@ const validateName = () => {
 
 formButton.addEventListener("click", function (event) {
   // validate email on submit
-  event.preventDefault();
+  
   if (!emailFormat.test(emailInput.value)) {
-    event.preventDefault();
     console.log("invalid email");
     emailInput.style.borderBottom = "2px solid hsl(0, 93%, 68%)";
   } else {
@@ -47,7 +46,7 @@ formButton.addEventListener("click", function (event) {
   // check if name is empty and email is valid if either are false abort submit
   if (nameInput.value === "" || !emailFormat.test(emailInput.value)) {
     console.log("invalid name or email");
-    event.preventDefault();
+
   } else {
     // turn the button border-bottom green
     console.log("valid name and email");

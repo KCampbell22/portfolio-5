@@ -216,8 +216,8 @@
           </div>
         </div>
         </div>
-        <form class="col-lg-6 col-md-12 d-flex flex-column justify-content-center"  method="post"
-        action="https://formspree.io/f/xjvlekpl">
+        <form class="col-lg-6 col-md-12 d-flex flex-column justify-content-center" id="my-form"   action="https://formspree.io/f/mlekggwe"
+        method="POST">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Your name">
@@ -225,8 +225,7 @@
           <div class="form-group">
             <label for="Email">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Your email">
-            <span id="email-error" class="text-danger"></span>
-          </div>
+            <p id="my-form-status"></p>          </div>
           <div class="form-group">
             <label for="message">Message</label>
             <textarea class="form-control" id="message" name="message" placeholder="Your message"></textarea>
@@ -240,8 +239,7 @@
     </nav>
   </footer>
 
-  <script src="./index.js"></script>
-  <script src="https://unpkg.com/@sendgrid/mail@7.2.0/dist/sendgrid-mail.min.js"></script>
-
+ 
+<script src="./index.js"></script>
 </body>
 </html>

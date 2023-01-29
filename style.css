@@ -521,7 +521,7 @@ footer section{
         align-items: center !important;
     }
 
-    #submit-button{
+    .submit-button{
         margin-left: 0 !important;
         margin-bottom: 3rem;
     }
