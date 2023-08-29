@@ -18,6 +18,10 @@
          
 }
 
+
+header > nav{
+    grid-area: header;
+}
 nav{
     font-family: 'SpaceGrotesk-Regular', 'sans-serif;';
     font-style: normal;
@@ -34,7 +38,41 @@ nav{
 }
 
 main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+#wrapper{
+    display: grid;
+    /* 
+    grid layout 
+    header
+    main
+    footer
+    */
+
+    
+    
+    
+    grid-template-rows:
+    repeat(auto-fit, 3, minmax(100px, 1fr));  
+    grid-auto-columns: minmax(100px, 1fr);
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+    grid-column-gap: 2%;
+    grid-row-gap: 20px;
     width: 80%;
+}
+.main{
+    
+    grid-area: main;
+    
 }
 #socials{
     display: flex;
@@ -55,6 +93,7 @@ main{
 :root{
 --underline-color: #00B4FF;
 --footer: #242424;
+
 --grey: #d9d9d9;
 --success-green: #4EE1A0;
 }
@@ -340,11 +379,22 @@ letter-spacing: -2px;
 
 footer{
     background: var(--footer);
+    color: white;
+    display: block;
+    position: relative;
+    grid-area: footer;
+    width: 100vw;
 }
 
-footer section{
+footer > sectio{
     min-height: 500px;
+    width: 80%;
 
+}
+
+#contact-box{
+    width: 80%;
+    position: relative;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -659,4 +709,10 @@ input[type="text"], input[type="email"]{
 
 footer nav .navbar-brands{
     margin: 1.5rem;
+}
+
+#footer-nav{
+    width: 80%;
+    margin: 0 auto;
+    min-height: 300px;
 }
