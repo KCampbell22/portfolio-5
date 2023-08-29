@@ -134,6 +134,10 @@ body{
     max-width: 500px;
 }
 
+.video{
+    max-width: 500px;
+}
+
 #headshot-box{
     position: relative;
     right: 0;
@@ -258,11 +262,15 @@ letter-spacing: -2px;
     border: none;
 }
 
+.project-card ul li{
+    margin: 0 10px;
+}
 
 
 #projects{
     gap: 3.5rem;
     margin-bottom: 1rem;
+    flex-direction: column;
 }
 
 .project-image{
@@ -355,7 +363,7 @@ letter-spacing: -2px;
   }
 
   
-  .project-links a{
+  .project-links a, .video-links{
     color: var(--grey);
     border-radius: 6px;
     background-color: rgba(9, 9, 9, 0.614);
@@ -372,6 +380,10 @@ letter-spacing: -2px;
     text-underline-offset: 10px;
   }
   
+  .video-links{
+    border: 1px solid white;
+    text-align: center;
+  }
     .project-links a:hover{
         background-color: var(--footer);
     }
