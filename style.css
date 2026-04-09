@@ -136,7 +136,8 @@ body{
 }
 
 .video{
-    max-width: 500px;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 #headshot-box{
@@ -178,6 +179,26 @@ body{
 
 }
 
+
+#experience {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    align-items: start;
+    border-top: 1px solid #dee2e6;
+}
+
+.job-title-location{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 50%;
+    max-width: 75%;
+}
+
+.job-description{
+
+}
 
 
 #skills div:last-child{
@@ -311,7 +332,7 @@ letter-spacing: -2px;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
 }
 
   
@@ -400,8 +421,8 @@ footer{
     width: 100vw;
 }
 
-footer > sectio{
-    min-height: 500px;
+footer {
+    min-height: 550px;
     width: 80%;
 
 }
@@ -409,6 +430,7 @@ footer > sectio{
 #contact-box{
     width: 80%;
     position: relative;
+    min-height: 500px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -728,5 +750,5 @@ footer nav .navbar-brands{
 #footer-nav{
     width: 80%;
     margin: 0 auto;
-    min-height: 300px;
+   
 }
