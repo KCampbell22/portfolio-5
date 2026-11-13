@@ -3,8 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kade Campbell - Web Developer based in St. Louis, MO.">
-  <title>Kade Campbell - Web Developer</title>
+  <meta name="description" content="Kade Campbell, freelance web developer in Grimes, IA: React apps, custom websites, Figma-to-code, landing pages and accessibility for agencies and businesses.">
+  <meta name="theme-color" content="#151515">
+  <title>Kade Campbell | Freelance Web Developer – React &amp; Front-End</title>
+
+  <link rel="canonical" href="https://www.kadecampbelldev.com/">
+
+  <!-- Link previews (LinkedIn, Slack, iMessage, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.kadecampbelldev.com/">
+  <meta property="og:image" content="https://www.kadecampbelldev.com/images/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kade Campbell, freelance web developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Kade Campbell | Freelance Web Developer">
+  <meta property="og:description" content="React apps, custom websites, Figma-to-code and landing pages for agencies that need an extra developer.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kade Campbell",
+    "url": "https://www.kadecampbelldev.com/",
+    "image": "https://www.kadecampbelldev.com/images/headshot.jpg",
+    "jobTitle": "Freelance Web Developer",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Grimes",
+      "addressRegion": "IA",
+      "addressCountry": "US"
+    },
+    "knowsAbout": ["React", "JavaScript", "HTML", "CSS", "SQL", "Figma", "Photoshop", "Web Accessibility", "Front-End Performance"],
+    "sameAs": [
+      "https://www.linkedin.com/in/kade-campbell-21a3601aa/",
+      "https://github.com/KCampbell22"
+    ]
+  }
+  </script>
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="icon" type="image/x-icon" href="./images/favIcon.ico">
@@ -14,10 +50,11 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
   <header class="wrapper">
     <nav class="site-nav" aria-label="Main">
-      <a href="#" class="brand">
+      <a href="#" class="brand" aria-label="Kade Campbell, back to top">
         kadecampbell
         <img src="./images/logo-removebg-preview (1).png" alt="" class="brand-logo">
       </a>
@@ -28,45 +65,70 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <ul class="socials">
-        <li><a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="./images/icon-linkedin.svg" alt=""></a></li>
-        <li><a href="https://github.com/KCampbell22" target="_blank" rel="noopener" aria-label="GitHub"><img src="./images/icon-github.svg" alt=""></a></li>
+        <li><a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)"><img src="./images/icon-linkedin.svg" alt=""></a></li>
+        <li><a href="https://github.com/KCampbell22" target="_blank" rel="noopener" aria-label="GitHub (opens in new tab)"><img src="./images/icon-github.svg" alt=""></a></li>
       </ul>
     </nav>
 
     <section class="hero">
       <div>
-        <h1 class="hero-title">Nice to meet you!<br> I'm <span class="blue-underline">Kade Campbell!</span></h1>
-        <p class="hero-text">Web Developer out of Grimes, IA who strives to build efficient, user-friendly, and accessible applications. Passionate about solving problems and learning new technologies.</p>
-        <a href="#contact" class="link-underline">Contact me</a>
+        <h1 class="hero-title">I'm <span class="blue-underline">Kade Campbell</span>, a freelance web developer.</h1>
+        <p class="hero-text">I turn Figma and Photoshop designs into fast, accessible websites and React apps for agencies and the businesses they serve, from landing pages to full builds, redesigns and performance tune-ups. Nearly four years of professional, client-facing experience, based in Grimes, Iowa and working remotely.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="link-underline">Start a project</a>
+          <a href="#projects" class="link-underline">See my work</a>
+        </div>
       </div>
       <div class="hero-image">
-        <img src="./images/IMG_4378.png" class="headshot" alt="Headshot of Kade Campbell">
+        <img src="./images/headshot.jpg" class="headshot" width="800" height="652" alt="Headshot of Kade Campbell">
       </div>
     </section>
   </header>
 
-  <main class="wrapper">
+  <main id="main" class="wrapper" tabindex="-1">
     <section id="services" class="services">
       <h2 class="section-title">Available for contract work</h2>
-      <p class="services-text">Need an extra developer? I help agencies ship React builds, landing pages,
-        design-to-code front-end work and site updates, and I'm comfortable working directly with your clients.</p>
-      <ul class="tags services-list">
-        <li>React builds</li>
-        <li>Landing pages</li>
-        <li>Design-to-code</li>
-        <li>Site updates</li>
-      </ul>
+      <p class="services-text">Need an extra developer? I take on contract and overflow work for agencies,
+        from a single landing page to a full React build, and I'm comfortable working directly with your clients.</p>
+      <div class="service-groups">
+        <div class="service-group">
+          <h3>Custom Web &amp; React Development</h3>
+          <ul class="service-list">
+            <li><strong>Custom React web apps.</strong> Fast, interactive single-page apps built around your business logic and user workflows.</li>
+            <li><strong>Custom website development.</strong> Clean, semantic, high-performing sites in modern HTML, CSS and JavaScript, with no bloated templates.</li>
+            <li><strong>Figma / design-to-code.</strong> Figma and Photoshop mockups turned into pixel-perfect, interactive front ends with smooth animations.</li>
+            <li><strong>UI component libraries.</strong> Reusable React component systems that keep your product consistent as it grows.</li>
+          </ul>
+        </div>
+        <div class="service-group">
+          <h3>User Experience &amp; Optimization</h3>
+          <ul class="service-list">
+            <li><strong>Responsive, mobile-first builds.</strong> Layouts that work smoothly on desktops, tablets and phones.</li>
+            <li><strong>Performance &amp; speed.</strong> Audits and refactors that shrink assets and bundles and improve Core Web Vitals.</li>
+            <li><strong>Redesigns &amp; modernization.</strong> Legacy sites and outdated codebases rebuilt as modern React apps with better navigation and usability.</li>
+            <li><strong>Accessibility (WCAG).</strong> Interfaces built and audited with semantic HTML and ARIA so every visitor can use them.</li>
+          </ul>
+        </div>
+        <div class="service-group">
+          <h3>Integrations &amp; Deployment</h3>
+          <ul class="service-list">
+            <li><strong>API &amp; third-party integrations.</strong> Front ends connected cleanly to back ends, headless CMSs, payment gateways and SaaS tools.</li>
+            <li><strong>High-converting landing pages.</strong> Fast, interactive marketing and launch pages built to capture leads.</li>
+          </ul>
+        </div>
+      </div>
       <a href="#contact" class="link-underline">Let's work together</a>
     </section>
 
-    <section class="skills" aria-label="Skills">
+    <section class="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title" class="visually-hidden">Skills</h2>
       <div class="skill-grid">
-        <div class="skill"><h2>React</h2><p>4 Year of Experience</p></div>
-        <div class="skill"><h2>JavaScript</h2><p>5 Year of Experience</p></div>
-        <div class="skill"><h2>HTML</h2><p>6 Years of Experience</p></div>
-        <div class="skill"><h2>CSS</h2><p>6 Years of Experience</p></div>
+        <div class="skill"><h3>React</h3><p>4 Years of Experience</p></div>
+        <div class="skill"><h3>JavaScript</h3><p>5 Years of Experience</p></div>
+        <div class="skill"><h3>HTML</h3><p>6 Years of Experience</p></div>
+        <div class="skill"><h3>CSS</h3><p>6 Years of Experience</p></div>
       </div>
-      <p class="skills-also">Also: <span>SQL</span></p>
+      <p class="skills-also">Also: <span>SQL</span> · <span>Figma</span> · <span>Photoshop</span></p>
     </section>
 
     <section id="projects">
@@ -78,10 +140,26 @@
       <div class="project-grid">
         <article class="project-card">
           <div class="project-thumb">
-            <!-- TODO: replace with a screenshot, e.g. <img src="./images/portfolio.jpg" class="project-media" alt="Screenshot of this portfolio site"> -->
-            <div class="project-media project-placeholder" role="img" aria-label="Screenshot coming soon">kadecampbell</div>
+            <img src="./images/stl-county-portal.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of St. Louis County's permitting and contractor licensing portal">
             <div class="project-links">
-              <a href="https://github.com/KCampbell22/portfolio-5" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://aca-prod.accela.com/SLC/Default.aspx" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: St. Louis County Portal (opens in new tab)</span></a>
+            </div>
+          </div>
+          <h3>St. Louis County Portal</h3>
+          <p class="project-desc">Redesigned the county's public permitting and contractor licensing portal to match its new brand, customizing the Accela Citizen Access platform.</p>
+          <ul class="tags">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Accela</li>
+            <li>Client work</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb">
+            <img src="./images/portfolio.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of this portfolio site's homepage">
+            <div class="project-links">
+              <a href="https://github.com/KCampbell22/portfolio-5" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Portfolio Site (opens in new tab)</span></a>
             </div>
           </div>
           <h3>Portfolio Site</h3>
@@ -94,10 +172,10 @@
 
         <article class="project-card">
           <div class="project-thumb">
-            <img src="./images/abc.jpg" class="project-media" alt="Screenshot of the ABC Creations site">
+            <img src="./images/abc.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the ABC Creations site">
             <div class="project-links">
-              <a href="https://abc-creations.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/ABC-Creations" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://abc-creations.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: ABC Creations (opens in new tab)</span></a>
+              <a href="https://github.com/KCampbell22/ABC-Creations" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: ABC Creations (opens in new tab)</span></a>
             </div>
           </div>
           <h3>ABC Creations</h3>
@@ -110,40 +188,40 @@
 
         <article class="project-card">
           <div class="project-thumb">
-            <img src="./images/currency-app.jpg" class="project-media" alt="Screenshot of the Currency Exchange App">
+            <img src="./images/currency-app.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Currency Exchange App">
             <div class="project-links">
-              <a href="https://kcampbell22.github.io/currency-converter/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/exhange-app-code" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://kcampbell22.github.io/currency-converter/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Currency Exchange App (opens in new tab)</span></a>
+              <a href="https://github.com/KCampbell22/exhange-app-code" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Currency Exchange App (opens in new tab)</span></a>
             </div>
           </div>
           <h3>Currency Exchange App</h3>
           <ul class="tags">
             <li>React</li>
-            <li><a href="https://www.frankfurter.app/" target="_blank" rel="noopener">Frankfurter API</a></li>
+            <li><a href="https://www.frankfurter.app/" target="_blank" rel="noopener">Frankfurter API<span class="visually-hidden"> (opens in new tab)</span></a></li>
           </ul>
         </article>
 
         <article class="project-card">
           <div class="project-thumb">
-            <img src="./images/movie-finder.jpg" class="project-media" alt="Screenshot of the Movie Finder App">
+            <img src="./images/movie-finder.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Movie Finder App">
             <div class="project-links">
-              <a href="https://kcampbell22.github.io/final/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/movie-finder-react" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://kcampbell22.github.io/final/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Movie Finder App (opens in new tab)</span></a>
+              <a href="https://github.com/KCampbell22/movie-finder-react" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Movie Finder App (opens in new tab)</span></a>
             </div>
           </div>
           <h3>Movie Finder App</h3>
           <ul class="tags">
             <li>React</li>
-            <li><a href="https://www.omdbapi.com/" target="_blank" rel="noopener">OMDb API</a></li>
+            <li><a href="https://www.omdbapi.com/" target="_blank" rel="noopener">OMDb API<span class="visually-hidden"> (opens in new tab)</span></a></li>
           </ul>
         </article>
 
         <article class="project-card">
           <div class="project-thumb">
-            <img src="./images/endurence+.jpg" class="project-media" alt="Screenshot of the Endurance+ landing page">
+            <img src="./images/endurance.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Endurance+ landing page">
             <div class="project-links">
-              <a href="https://e-plus.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/E-plus-landing" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://e-plus.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Endurance+ (opens in new tab)</span></a>
+              <a href="https://github.com/KCampbell22/E-plus-landing" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Endurance+ (opens in new tab)</span></a>
             </div>
           </div>
           <h3>Endurance+</h3>
@@ -153,28 +231,13 @@
           </ul>
         </article>
 
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/apple-clone.jpg" class="project-media" alt="Screenshot of the Apple clone">
-            <div class="project-links">
-              <a href="https://kade-campbell-apple-clone.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/Project-Apple-Clone" target="_blank" rel="noopener">GitHub Repo</a>
-            </div>
-          </div>
-          <h3>Apple Clone</h3>
-          <ul class="tags">
-            <li>Bootstrap</li>
-            <li>HTML</li>
-            <li>CSS</li>
-          </ul>
-        </article>
 
         <article class="project-card">
           <div class="project-thumb">
-            <img src="./images/airbnb.jpg" class="project-media" alt="Screenshot of the Airbnb Newsroom clone">
+            <img src="./images/airbnb.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Airbnb Newsroom clone">
             <div class="project-links">
-              <a href="https://bnb-newsroom-clone-kade-campbell.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/aribnb_news_clone" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://bnb-newsroom-clone-kade-campbell.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Airbnb Clone (opens in new tab)</span></a>
+              <a href="https://github.com/KCampbell22/aribnb_news_clone" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Airbnb Clone (opens in new tab)</span></a>
             </div>
           </div>
           <h3>Airbnb Clone</h3>
@@ -187,10 +250,10 @@
 
         <article class="project-card">
           <div class="project-thumb">
-            <img src="./images/news-weekly.jpg" class="project-media" alt="Screenshot of the Newsweekly clone">
+            <img src="./images/news-weekly.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Newsweekly clone">
             <div class="project-links">
-              <a href="https://newsweekly-clone-kade-campbell.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/Newsweekly-Kade" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://newsweekly-clone-kade-campbell.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Newsweekly Clone (opens in new tab)</span></a>
+              <a href="https://github.com/KCampbell22/Newsweekly-Kade" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Newsweekly Clone (opens in new tab)</span></a>
             </div>
           </div>
           <h3>Newsweekly Clone</h3>
@@ -202,10 +265,12 @@
         </article>
 
         <article class="project-card">
-          <video class="project-media" controls preload="metadata" playsinline>
+          <video class="project-media" controls preload="metadata" playsinline aria-label="Screen recording demo of the Scheduler App" aria-describedby="scheduler-desc">
             <source src="./Screen Recording 2022-12-09 at 11.08.12 PM (1).mp4#t=0.1" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+          <!-- Text alternative for the silent video (WCAG 1.2.1) -->
+          <p id="scheduler-desc" class="visually-hidden">Silent 58-second walkthrough of the Scheduler App, a task delegation web app built with ASP.NET Core, starting from its welcome and sign-in screen.</p>
           <h3>Scheduler App</h3>
           <ul class="tags">
             <li>C#</li>
@@ -213,7 +278,7 @@
             <li>ASP.NET Core</li>
           </ul>
           <div class="project-links project-links--static">
-            <a href="https://github.com/KCampbell22/TaskDelegatingWebApp" target="_blank" rel="noopener">GitHub Repo</a>
+            <a href="https://github.com/KCampbell22/TaskDelegatingWebApp" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Scheduler App (opens in new tab)</span></a>
           </div>
         </article>
       </div>
@@ -242,7 +307,7 @@
           <p class="job-company">St. Louis County</p>
           <p class="job-note">Contract-to-hire through TEKsystems; brought on full-time after 2 months</p>
           <ul class="job-points">
-            <li>Led the redesign of the county's public-facing web portal to match its new brand identity, using HTML and CSS</li>
+            <li>Led the redesign of the county's <a href="https://aca-prod.accela.com/SLC/Default.aspx" target="_blank" rel="noopener">public-facing web portal<span class="visually-hidden"> (opens in new tab)</span></a> to match its new brand identity, using HTML and CSS</li>
             <li>Partnered with multiple county departments to translate their processes into custom software workflows</li>
             <li>Wrote JavaScript business logic and SQL to automate processes</li>
             <li>Handled both day-to-day support tickets and larger projects</li>
@@ -250,14 +315,52 @@
         </div>
       </article>
     </section>
+
+    <section id="agencies" class="agencies">
+      <h2 class="section-title">Working with agencies</h2>
+      <p class="agencies-intro">I fit into your team and process, so you can take on more work without hiring.</p>
+      <!-- TODO: confirm the hours and keep this current, or remove it -->
+      <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Taking on new projects · 10–20 hours per week</p>
+
+      <div class="agency-grid">
+        <div class="agency-item">
+          <h3>White-label friendly</h3>
+          <p>I work under your agency's name. Your clients see your team, not a subcontractor.</p>
+        </div>
+        <div class="agency-item">
+          <h3>NDA-ready</h3>
+          <p>Happy to sign NDAs and work within your contracts and processes.</p>
+        </div>
+        <div class="agency-item">
+          <h3>Your tools, not mine</h3>
+          <p>I join your Slack, Figma, GitHub and project boards, so there's no new workflow to learn.</p>
+        </div>
+        <div class="agency-item">
+          <h3>Clear communication</h3>
+          <p>Regular progress updates, early warning on blockers, and questions batched so they don't slow your team down.</p>
+        </div>
+        <div class="agency-item">
+          <h3>Client-ready</h3>
+          <p>I've led client workshops and requirements sessions, so I can join calls with your clients when you need me to.</p>
+        </div>
+        <div class="agency-item">
+          <!-- TODO: confirm you offer both pricing models -->
+          <h3>Flexible engagements</h3>
+          <p>Hourly or fixed-price, from a single landing page to ongoing overflow support.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="contact" class="site-footer">
     <div class="wrapper contact">
       <div>
         <h2 class="contact-title">Contact</h2>
-        <p>I would love to hear about your project and how I could help. Please
-          fill in the form, and I’ll get back to you as soon as possible.</p>
+        <p>Tell me about your project, or the overflow work you need covered, and
+          I’ll get back to you as soon as possible.</p>
+        <p class="contact-call">Prefer to talk first? Book a free 30-minute intro call.</p>
+        <!-- Opens the Calendly popup via index.js; without JavaScript it just opens the booking page -->
+        <a href="https://calendly.com/kadecampbelldev" class="link-underline js-calendly" target="_blank" rel="noopener">Book a call<span class="visually-hidden"> (opens scheduling)</span></a>
       </div>
 
       <form class="contact-form" id="my-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
@@ -267,11 +370,46 @@
         <p hidden><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+          <input type="text" class="form-control" id="name" name="name" autocomplete="name" placeholder="Your name" required>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Your email" required>
+          <input type="email" class="form-control" id="email" name="email" autocomplete="email" placeholder="Your email" required>
+        </div>
+        <div class="form-group">
+          <label for="company">Company / agency <span class="optional">(optional)</span></label>
+          <input type="text" class="form-control" id="company" name="company" autocomplete="organization" placeholder="Where you work">
+        </div>
+        <div class="form-row-pair">
+          <div class="form-group">
+            <label for="project-type">Project type <span class="optional">(optional)</span></label>
+            <select class="form-control" id="project-type" name="project-type">
+              <option value="">Choose one</option>
+              <option>React web app</option>
+              <option>Custom website</option>
+              <option>Design-to-code</option>
+              <option>Landing page</option>
+              <option>Redesign / modernization</option>
+              <option>Performance or accessibility audit</option>
+              <option>API integration</option>
+              <option>Site updates</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="timeline">Timeline <span class="optional">(optional)</span></label>
+            <select class="form-control" id="timeline" name="timeline">
+              <option value="">Choose one</option>
+              <option>ASAP</option>
+              <option>Within a month</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="project-link">Design or site link <span class="optional">(optional)</span></label>
+          <!-- type="text" rather than "url" so "mysite.com" without https:// isn't rejected -->
+          <input type="text" inputmode="url" class="form-control" id="project-link" name="project-link" autocomplete="url" placeholder="Figma file, current site, etc.">
         </div>
         <div class="form-group">
           <label for="message">Message</label>
@@ -283,7 +421,7 @@
     </div>
 
     <div class="wrapper footer-nav">
-      <a href="#" class="brand">kadecampbell</a>
+      <a href="#" class="brand" aria-label="Kade Campbell, back to top">kadecampbell</a>
     </div>
   </footer>
 
