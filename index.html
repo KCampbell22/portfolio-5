@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kade Campbell - Full Stack Developer based in St. Louis, MO.">
-  <title>Kade Campbell - Full Stack Developer</title>
+  <meta name="description" content="Kade Campbell - Web Developer based in St. Louis, MO.">
+  <title>Kade Campbell - Web Developer</title>
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="icon" type="image/x-icon" href="./images/favIcon.ico">
@@ -16,11 +16,17 @@
 <body>
 
   <header class="wrapper">
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Main">
       <a href="#" class="brand">
         kadecampbell
         <img src="./images/logo-removebg-preview (1).png" alt="" class="brand-logo">
       </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
       <ul class="socials">
         <li><a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="./images/icon-linkedin.svg" alt=""></a></li>
         <li><a href="https://github.com/KCampbell22" target="_blank" rel="noopener" aria-label="GitHub"><img src="./images/icon-github.svg" alt=""></a></li>
@@ -30,7 +36,7 @@
     <section class="hero">
       <div>
         <h1 class="hero-title">Nice to meet you!<br> I'm <span class="blue-underline">Kade Campbell!</span></h1>
-        <p class="hero-text">Full Stack Developer out of St. Louis, MO who strives to build efficient, user-friendly, and accessible applications. Passionate about solving problems and learning new technologies.</p>
+        <p class="hero-text">Web Developer out of St. Louis, MO who strives to build efficient, user-friendly, and accessible applications. Passionate about solving problems and learning new technologies.</p>
         <a href="#contact" class="link-underline">Contact me</a>
       </div>
       <div class="hero-image">
@@ -40,13 +46,27 @@
   </header>
 
   <main class="wrapper">
+    <section id="services" class="services">
+      <h2 class="section-title">Available for contract work</h2>
+      <p class="services-text">Need an extra developer? I help agencies ship React builds, landing pages,
+        design-to-code front-end work and site updates, and I'm comfortable working directly with your clients.</p>
+      <ul class="tags services-list">
+        <li>React builds</li>
+        <li>Landing pages</li>
+        <li>Design-to-code</li>
+        <li>Site updates</li>
+      </ul>
+      <a href="#contact" class="link-underline">Let's work together</a>
+    </section>
+
     <section class="skills" aria-label="Skills">
-      <div class="skill"><h2>HTML</h2><p>3 Years of Experience</p></div>
-      <div class="skill"><h2>CSS</h2><p>3 Years of Experience</p></div>
-      <div class="skill"><h2>JavaScript</h2><p>1 Year of Experience</p></div>
-      <div class="skill"><h2>C#</h2><p>1 Year of Experience</p></div>
-      <div class="skill"><h2>Python</h2><p>1 Year of Experience</p></div>
-      <div class="skill"><h2>React</h2><p>1 Year of Experience</p></div>
+      <div class="skill-grid">
+        <div class="skill"><h2>React</h2><p>1 Year of Experience</p></div>
+        <div class="skill"><h2>JavaScript</h2><p>1 Year of Experience</p></div>
+        <div class="skill"><h2>HTML</h2><p>3 Years of Experience</p></div>
+        <div class="skill"><h2>CSS</h2><p>3 Years of Experience</p></div>
+      </div>
+      <p class="skills-also">Also: <span>SQL</span></p>
     </section>
 
     <section id="projects">
@@ -57,19 +77,35 @@
 
       <div class="project-grid">
         <article class="project-card">
-          <video class="project-media" controls preload="metadata" playsinline>
-            <source src="./Screen Recording 2022-12-09 at 11.08.12 PM (1).mp4#t=0.1" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <h3>Scheduler App</h3>
-          <ul class="tags">
-            <li>C#</li>
-            <li>Entity Framework Core</li>
-            <li>ASP.NET Core</li>
-          </ul>
-          <div class="project-links project-links--static">
-            <a href="https://github.com/KCampbell22/TaskDelegatingWebApp" target="_blank" rel="noopener">GitHub Repo</a>
+          <div class="project-thumb">
+            <!-- TODO: replace with a screenshot, e.g. <img src="./images/portfolio.jpg" class="project-media" alt="Screenshot of this portfolio site"> -->
+            <div class="project-media project-placeholder" role="img" aria-label="Screenshot coming soon">kadecampbell</div>
+            <div class="project-links">
+              <a href="https://github.com/KCampbell22/portfolio-5" target="_blank" rel="noopener">GitHub Repo</a>
+            </div>
           </div>
+          <h3>Portfolio Site</h3>
+          <ul class="tags">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb">
+            <img src="./images/abc.jpg" class="project-media" alt="Screenshot of the ABC Creations site">
+            <div class="project-links">
+              <a href="https://abc-creations.netlify.app/" target="_blank" rel="noopener">Project Link</a>
+              <a href="https://github.com/KCampbell22/ABC-Creations" target="_blank" rel="noopener">GitHub Repo</a>
+            </div>
+          </div>
+          <h3>ABC Creations</h3>
+          <ul class="tags">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
         </article>
 
         <article class="project-card">
@@ -104,17 +140,32 @@
 
         <article class="project-card">
           <div class="project-thumb">
-            <img src="./images/abc.jpg" class="project-media" alt="Screenshot of the ABC Creations site">
+            <img src="./images/endurence+.jpg" class="project-media" alt="Screenshot of the Endurance+ landing page">
             <div class="project-links">
-              <a href="https://abc-creations.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/ABC-Creations" target="_blank" rel="noopener">GitHub Repo</a>
+              <a href="https://e-plus.netlify.app/" target="_blank" rel="noopener">Project Link</a>
+              <a href="https://github.com/KCampbell22/E-plus-landing" target="_blank" rel="noopener">GitHub Repo</a>
             </div>
           </div>
-          <h3>ABC Creations</h3>
+          <h3>Endurance+</h3>
           <ul class="tags">
             <li>HTML</li>
             <li>CSS</li>
-            <li>JavaScript</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb">
+            <img src="./images/apple-clone.jpg" class="project-media" alt="Screenshot of the Apple clone">
+            <div class="project-links">
+              <a href="https://kade-campbell-apple-clone.netlify.app/" target="_blank" rel="noopener">Project Link</a>
+              <a href="https://github.com/KCampbell22/Project-Apple-Clone" target="_blank" rel="noopener">GitHub Repo</a>
+            </div>
+          </div>
+          <h3>Apple Clone</h3>
+          <ul class="tags">
+            <li>Bootstrap</li>
+            <li>HTML</li>
+            <li>CSS</li>
           </ul>
         </article>
 
@@ -151,36 +202,53 @@
         </article>
 
         <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/apple-clone.jpg" class="project-media" alt="Screenshot of the Apple clone">
-            <div class="project-links">
-              <a href="https://kade-campbell-apple-clone.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/Project-Apple-Clone" target="_blank" rel="noopener">GitHub Repo</a>
-            </div>
-          </div>
-          <h3>Apple Clone</h3>
+          <video class="project-media" controls preload="metadata" playsinline>
+            <source src="./Screen Recording 2022-12-09 at 11.08.12 PM (1).mp4#t=0.1" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <h3>Scheduler App</h3>
           <ul class="tags">
-            <li>Bootstrap</li>
-            <li>HTML</li>
-            <li>CSS</li>
+            <li>C#</li>
+            <li>Entity Framework Core</li>
+            <li>ASP.NET Core</li>
           </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/endurence+.jpg" class="project-media" alt="Screenshot of the Endurance+ landing page">
-            <div class="project-links">
-              <a href="https://e-plus.netlify.app/" target="_blank" rel="noopener">Project Link</a>
-              <a href="https://github.com/KCampbell22/E-plus-landing" target="_blank" rel="noopener">GitHub Repo</a>
-            </div>
+          <div class="project-links project-links--static">
+            <a href="https://github.com/KCampbell22/TaskDelegatingWebApp" target="_blank" rel="noopener">GitHub Repo</a>
           </div>
-          <h3>Endurance+</h3>
-          <ul class="tags">
-            <li>HTML</li>
-            <li>CSS</li>
-          </ul>
         </article>
       </div>
+    </section>
+
+    <section id="experience" class="experience">
+      <h2 class="section-title">Experience</h2>
+
+      <article class="job">
+        <p class="job-dates">Jan 2025 – Present</p>
+        <div>
+          <h3>Tech Consultant</h3>
+          <p class="job-company">Accela (formerly ePermitHub)</p>
+          <ul class="job-points">
+            <li>Work directly with clients to gather requirements and turn them into configured, working solutions</li>
+            <li>Lead workshops and training sessions to get client teams up and running</li>
+            <li>Coordinate with project managers, QA and engineering to deliver projects smoothly and fix issues quickly</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job">
+        <p class="job-dates">Feb 2023 – Jan 2025</p>
+        <div>
+          <h3>Applications Developer</h3>
+          <p class="job-company">St. Louis County</p>
+          <p class="job-note">Contract-to-hire through TEKsystems; brought on full-time after 2 months</p>
+          <ul class="job-points">
+            <li>Led the redesign of the county's public-facing web portal to match its new brand identity, using HTML and CSS</li>
+            <li>Partnered with multiple county departments to translate their processes into custom software workflows</li>
+            <li>Wrote JavaScript business logic and SQL to automate processes</li>
+            <li>Handled both day-to-day support tickets and larger projects</li>
+          </ul>
+        </div>
+      </article>
     </section>
   </main>
 
@@ -192,7 +260,11 @@
           fill in the form, and I’ll get back to you as soon as possible.</p>
       </div>
 
-      <form class="contact-form" id="my-form" action="https://formspree.io/f/mlekggwe" method="POST">
+      <form class="contact-form" id="my-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <!-- Netlify Forms: form-name must match the form's name attribute -->
+        <input type="hidden" name="form-name" value="contact">
+        <!-- Honeypot: hidden from people, bots that fill it in get discarded -->
+        <p hidden><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>

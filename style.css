@@ -170,6 +170,43 @@ img, video {
     opacity: 0.7;
 }
 
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: clamp(1rem, 2.5vw, 2rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/* Below tablet: brand + socials share row one, section links get their own row */
+@media (max-width: 767.98px) {
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        column-gap: 0.75rem;
+        border-top: 1px solid var(--footer);
+    }
+
+    .nav-links a {
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+    }
+}
+
 /* Hero */
 
 .hero {
@@ -211,20 +248,63 @@ img, video {
     max-width: 400px;
 }
 
-/* Skills — 2 columns on phones, 3 above; 6 skills divide evenly either way */
+/* Shared big section heading (Services, Experience) */
 
-.skills {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 1rem;
+.section-title {
+    font-size: clamp(2.25rem, 4.5vw + 0.5rem, 4rem);
+    margin-bottom: 1.5rem;
+}
+
+/* Services */
+
+.services {
     padding-block: clamp(2.5rem, 6vw, 4rem);
     border-bottom: 1px solid var(--grey);
 }
 
+.services-text {
+    max-width: 55ch;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    margin-bottom: 1.25rem;
+}
+
+/* Extra specificity so .tags { margin: 0 } further down doesn't win */
+.services .services-list {
+    margin-bottom: 2rem;
+}
+
+.services-list li {
+    color: var(--grey);
+}
+
+/* Skills — 2 columns on phones, 4 above; 4 skills divide evenly either way */
+
+.skills {
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+    border-bottom: 1px solid var(--grey);
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+}
+
 @media (min-width: 768px) {
-    .skills {
-        grid-template-columns: repeat(3, 1fr);
+    .skill-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
+}
+
+.skills-also {
+    margin: 2rem 0 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.skills-also span {
+    color: white;
+    font-weight: 700;
 }
 
 .skill h2 {
@@ -240,6 +320,7 @@ img, video {
 
 #projects {
     padding-block: clamp(2.5rem, 6vw, 4rem);
+    border-bottom: 1px solid var(--grey);
 }
 
 .projects-header {
@@ -280,6 +361,16 @@ img, video {
 
 video.project-media {
     object-fit: contain;
+}
+
+/* Stand-in until a real screenshot is added */
+.project-placeholder {
+    display: grid;
+    place-items: center;
+    background-color: var(--footer);
+    color: white;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 700;
 }
 
 .project-thumb {
@@ -341,6 +432,67 @@ video.project-media {
     .project-thumb:focus-within .project-links {
         opacity: 1;
     }
+}
+
+/* Experience — dates in a left column on tablet+, stacked on phones */
+
+.experience {
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+
+.job {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--footer);
+}
+
+@media (min-width: 768px) {
+    .job {
+        grid-template-columns: 200px 1fr;
+        gap: 2rem;
+    }
+}
+
+.job h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.job-dates,
+.job-company {
+    margin: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.job-dates {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.job-company {
+    color: var(--grey);
+}
+
+.job-note {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.job-points {
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+}
+
+.job-points li + li {
+    margin-top: 0.4rem;
+}
+
+.job-points li::marker {
+    color: var(--accent);
 }
 
 /* Contact / footer */
@@ -444,6 +596,12 @@ label {
     .brand-logo {
         display: none;
     }
+
+    /* Keep all four section links on one row */
+    .nav-links a {
+        font-size: 0.7rem;
+        letter-spacing: 0.02em;
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -453,12 +611,15 @@ label {
     }
 
     .hero,
+    .services,
     .skills,
-    .site-footer {
+    .site-footer,
+    .experience .section-title {
         text-align: center;
     }
 
     .hero-text,
+    .services-text,
     .site-footer p {
         margin-inline: auto;
     }
