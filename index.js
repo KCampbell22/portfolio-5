@@ -114,7 +114,23 @@ if (carousel) {
     return btn;
   });
 
-  function show(k, direction, initial) {
+  // Tablet & phone: cards behave like a swipeable stack (see style.css)
+  const stackMode = window.matchMedia("(max-width: 1023px)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const animateCards = () => stackMode.matches && !reducedMotion.matches;
+
+  // Which card peeks out from underneath the active one (none on desktop)
+  const setBehind = (target) => {
+    slides.forEach((slide) => {
+      const behind = slide === target && stackMode.matches;
+      slide.classList.toggle("is-behind", behind);
+      if (behind) slide.setAttribute("inert", ""); else slide.removeAttribute("inert");
+      if (!behind) slide.style.removeProperty("transform");
+    });
+  };
+  const peekNext = () => setBehind(slides[(current + 1) % n]);
+
+  function show(k, direction, initial, enter) {
     const next = (k + n) % n;
     const dir = direction || (next > current ? 1 : -1);
 
@@ -125,11 +141,13 @@ if (carousel) {
 
     slides.forEach((slide, i) => slide.classList.toggle("is-active", i === next));
     slides[next].style.setProperty("--from", `${dir * 24}px`);
+    slides[next].dataset.enter = enter || "slide";
     pickerButtons.forEach((btn, i) => btn.setAttribute("aria-current", String(i === next)));
 
     current = next;
     posEl.textContent = pad(current + 1);
     progressBar.style.width = `${Math.round(((current + 1) / n) * 100)}%`;
+    peekNext();
 
     // Keep the active chip visible when the picker scrolls (phones).
     // Skipped on page load: reading layout there forces an extra reflow.
@@ -145,34 +163,137 @@ if (carousel) {
     });
   }
 
-  carousel.querySelector(".carousel-prev").addEventListener("click", () => show(current - 1, -1));
-  carousel.querySelector(".carousel-next").addEventListener("click", () => show(current + 1, 1));
+  // Throw the active card off-screen, then promote the card underneath.
+  // step = +1 (next, card flies left) or -1 (previous, card flies right).
+  let flying = false;
+  const resetCard = (card) => {
+    card.style.removeProperty("transition");
+    card.style.removeProperty("transform");
+    card.style.removeProperty("opacity");
+  };
+
+  function fly(step) {
+    if (flying) return;
+    if (!animateCards()) { show(current + step, step); return; }
+    flying = true;
+    const card = slides[current];
+    const target = (current + step + n) % n;
+    const width = slidesWrap.offsetWidth;
+    setBehind(slides[target]);
+    // Grow the card underneath into place while the top card flies away
+    slides[target].style.transition = "transform .3s cubic-bezier(.2, .8, .2, 1)";
+    slides[target].style.transform = "none";
+    card.style.transition = "transform .3s ease-in, opacity .3s ease-in";
+    card.style.transform = `translateX(${-step * width * 1.3}px) rotate(${-step * 16}deg)`;
+    card.style.opacity = "0";
+    setTimeout(() => {
+      resetCard(card);
+      slides[target].style.removeProperty("transition");
+      show(target, step, false, "none");
+      flying = false;
+    }, 300);
+  }
+
+  carousel.querySelector(".carousel-prev").addEventListener("click", () => fly(-1));
+  carousel.querySelector(".carousel-next").addEventListener("click", () => fly(1));
 
   // Arrow keys while focus is inside the carousel (not inside a video's controls)
   carousel.addEventListener("keydown", (event) => {
     if (event.target.closest("video, input, textarea, select")) return;
-    if (event.key === "ArrowLeft") { show(current - 1, -1); }
-    if (event.key === "ArrowRight") { show(current + 1, 1); }
+    if (event.key === "ArrowLeft") fly(-1);
+    if (event.key === "ArrowRight") fly(1);
   });
 
-  // Swipe on touch screens
-  let startX = null;
-  let startY = null;
+  // Swipe: the card follows the finger (with a slight tilt) on tablets and
+  // phones. Release far enough, or flick, and it flies off; otherwise it
+  // springs back. Vertical movement is left alone so the page still scrolls.
+  let drag = null;
+  let suppressClick = false;
+
+  // Swipes may start on a video (it fills much of the card on phones), but not
+  // on its controls bar, so dragging the seek bar still scrubs the video.
+  const onVideoControls = (event) => {
+    const video = event.target.closest("video");
+    if (!video) return false;
+    return event.clientY > video.getBoundingClientRect().bottom - 56;
+  };
+
   slidesWrap.addEventListener("pointerdown", (event) => {
-    if (event.pointerType === "mouse" || event.target.closest("video")) return;
-    startX = event.clientX;
-    startY = event.clientY;
+    suppressClick = false;
+    if (!stackMode.matches || flying || event.button > 0 || onVideoControls(event)) return;
+    drag = { x: event.clientX, y: event.clientY, t: performance.now(), dx: 0, active: false, id: event.pointerId };
   });
-  slidesWrap.addEventListener("pointerup", (event) => {
-    if (startX === null) return;
-    const dx = event.clientX - startX;
-    const dy = event.clientY - startY;
-    startX = null;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-      dx < 0 ? show(current + 1, 1) : show(current - 1, -1);
+
+  slidesWrap.addEventListener("pointermove", (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dx = event.clientX - drag.x;
+    const dy = event.clientY - drag.y;
+    if (!drag.active) {
+      if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { drag = null; return; } // scrolling
+      if (Math.abs(dx) < 10) return;
+      drag.active = true;
+      slidesWrap.setPointerCapture(event.pointerId);
+      slidesWrap.classList.add("is-dragging");
+      slides[current].style.transition = "none";
     }
+    drag.dx = dx;
+    const card = slides[current];
+    const width = slidesWrap.offsetWidth;
+    card.style.transform = `translateX(${dx}px) rotate(${(dx / width) * 12}deg)`;
+
+    // Show the card you'd land on, growing as you drag further
+    const under = slides[(current + (dx < 0 ? 1 : -1) + n) % n];
+    if (!under.classList.contains("is-behind")) setBehind(under);
+    const progress = Math.min(1, Math.abs(dx) / (width * 0.5));
+    under.style.transition = "none";
+    under.style.transform = `translateY(${14 * (1 - progress)}px) scale(${0.95 + 0.05 * progress})`;
   });
-  slidesWrap.addEventListener("pointercancel", () => { startX = null; });
+
+  const endDrag = (cancelled) => {
+    if (!drag) return;
+    const { dx, t, active } = drag;
+    drag = null;
+    slidesWrap.classList.remove("is-dragging");
+    if (!active) return;
+    suppressClick = true; // the end of a drag isn't a tap on a link
+
+    const width = slidesWrap.offsetWidth;
+    const velocity = Math.abs(dx) / Math.max(1, performance.now() - t); // px per ms
+    if (!cancelled && (Math.abs(dx) > width * 0.28 || velocity > 0.6)) {
+      fly(dx < 0 ? 1 : -1);
+    } else {
+      // Spring back
+      const card = slides[current];
+      card.style.transition = "transform .35s cubic-bezier(.2, .8, .2, 1)";
+      card.style.transform = "";
+      slides.forEach((s) => {
+        if (s.classList.contains("is-behind")) {
+          s.style.transition = "transform .35s cubic-bezier(.2, .8, .2, 1)";
+          s.style.removeProperty("transform");
+        }
+      });
+      setTimeout(() => {
+        if (flying) return;
+        resetCard(card);
+        slides.forEach((s) => s.style.removeProperty("transition"));
+        peekNext();
+      }, 350);
+    }
+  };
+  slidesWrap.addEventListener("pointerup", () => endDrag(false));
+  slidesWrap.addEventListener("pointercancel", () => endDrag(true));
+
+  // A drag that started on a link or button shouldn't also click it
+  slidesWrap.addEventListener("click", (event) => {
+    if (suppressClick) {
+      event.preventDefault();
+      event.stopPropagation();
+      suppressClick = false;
+    }
+  }, true);
+
+  // Turn the stack on/off when crossing the tablet breakpoint (e.g. rotating)
+  stackMode.addEventListener("change", peekNext);
 
   show(0, 1, true);
 }

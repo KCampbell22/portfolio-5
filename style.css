@@ -44,9 +44,19 @@
   --band-line: #171A2B;
   --media-l: 94%;
   --media-s: 75%;
-  --shadow-soft: 0 8px 30px rgba(30, 30, 80, .06);
-  --shadow-card: 0 24px 60px rgba(30, 30, 80, .09);
-  --shadow-lift: 0 30px 70px rgba(30, 30, 80, .14);
+  /* Elevation scale: a tight shadow for the edge + a wide, soft one for depth,
+     tinted toward the indigo accent so they read as "lifted", not dirty. */
+  --shadow-xs: 0 1px 2px rgba(23, 26, 60, .06), 0 1px 3px rgba(23, 26, 60, .05);
+  --shadow-sm: 0 1px 2px rgba(23, 26, 60, .06), 0 6px 16px -4px rgba(35, 32, 110, .10);
+  --shadow-md: 0 2px 4px rgba(23, 26, 60, .05), 0 14px 32px -8px rgba(35, 32, 110, .16);
+  --shadow-lg: 0 4px 8px rgba(23, 26, 60, .05), 0 28px 60px -14px rgba(35, 32, 110, .24);
+  --shadow-xl: 0 6px 12px rgba(23, 26, 60, .06), 0 40px 80px -20px rgba(45, 38, 140, .34);
+  --shadow-accent: 0 2px 4px rgba(67, 56, 202, .18), 0 18px 40px -12px rgba(79, 70, 229, .55);
+  --highlight: inset 0 0 0 0 transparent; /* light mode needs no top highlight */
+  /* Older names, kept so existing rules pick up the new scale */
+  --shadow-soft: var(--shadow-sm);
+  --shadow-card: var(--shadow-lg);
+  --shadow-lift: var(--shadow-xl);
   --success: #16A34A;
 
   --font-display: "Space Grotesk", system-ui, sans-serif;
@@ -75,9 +85,15 @@
   --band-line: #2A2E48;
   --media-l: 18%;
   --media-s: 30%;
-  --shadow-soft: 0 8px 30px rgba(0, 0, 0, .25);
-  --shadow-card: 0 24px 60px rgba(0, 0, 0, .3);
-  --shadow-lift: 0 30px 70px rgba(0, 0, 0, .35);
+  /* On dark backgrounds shadows need more weight, and a faint top-edge
+     highlight does most of the "lifting" */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, .35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 18px -6px rgba(0, 0, 0, .45);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, .3), 0 16px 36px -10px rgba(0, 0, 0, .55);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, .3), 0 30px 64px -16px rgba(0, 0, 0, .65);
+  --shadow-xl: 0 6px 12px rgba(0, 0, 0, .35), 0 44px 90px -20px rgba(0, 0, 0, .75);
+  --shadow-accent: 0 2px 4px rgba(0, 0, 0, .3), 0 18px 44px -12px rgba(156, 152, 255, .35);
+  --highlight: inset 0 1px 0 rgba(255, 255, 255, .05);
   color-scheme: dark;
 }
 
@@ -183,10 +199,10 @@ main:focus { outline: none; }
 .btn-accent {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 1px 2px rgba(23, 26, 43, .12), inset 0 1px 0 rgba(255, 255, 255, .18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), var(--shadow-accent);
 }
-.btn-ink { background: var(--ink); color: var(--bg); }
-.btn-outline { background: var(--card); border-color: var(--line); color: var(--ink); }
+.btn-ink { background: var(--ink); color: var(--bg); box-shadow: var(--shadow-sm); }
+.btn-outline { background: var(--card); border-color: var(--line); color: var(--ink); box-shadow: var(--highlight), var(--shadow-xs); }
 .btn-white { background: #FFFFFF; color: #171A2B; }
 .btn-lavender { background: #9C98FF; color: #11112A; }
 .btn-ghost-dark { border-color: rgba(237, 239, 250, .35); color: #EDEFFA; }
@@ -346,6 +362,7 @@ main:focus { outline: none; }
   border-radius: 999px;
   background: var(--card);
   border: 1px solid var(--line);
+  box-shadow: var(--highlight), var(--shadow-sm);
   font-size: 14px;
   font-weight: 500;
 }
@@ -394,6 +411,7 @@ main:focus { outline: none; }
   border-radius: 24px;
   background: var(--card);
   border: 1px solid var(--line);
+  box-shadow: var(--highlight), var(--shadow-md);
 }
 
 /* ---------- Hero ---------- */
@@ -516,7 +534,7 @@ main:focus { outline: none; }
   border: 1px solid var(--line);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  box-shadow: 0 12px 30px rgba(30, 30, 80, .12);
+  box-shadow: var(--highlight), var(--shadow-md);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -534,6 +552,7 @@ main:focus { outline: none; }
   border-radius: 18px;
   background: var(--card);
   border: 1px solid var(--line);
+  box-shadow: var(--highlight), var(--shadow-sm);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -564,11 +583,12 @@ main:focus { outline: none; }
   border: 1px solid var(--line);
   background: var(--card);
   color: var(--ink);
+  box-shadow: var(--highlight), var(--shadow-xs);
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-.nav-btn-accent { border: 0; background: var(--accent); color: var(--accent-ink); }
+.nav-btn-accent { border: 0; background: var(--accent); color: var(--accent-ink); box-shadow: var(--shadow-accent); }
 
 .slides { display: flex; flex-direction: column; gap: 24px; }
 
@@ -579,9 +599,14 @@ main:focus { outline: none; }
   border-radius: 28px;
   background: var(--card);
   border: 1px solid var(--line);
-  box-shadow: var(--shadow-card);
+  /* Strongest lift on the page, plus a soft glow in the project's own hue */
+  box-shadow:
+    var(--highlight),
+    var(--shadow-xl),
+    0 56px 110px -44px hsl(var(--hue) 75% 55% / var(--glow-alpha, .38));
   overflow: hidden;
 }
+[data-theme="dark"] .slide { --glow-alpha: .22; }
 
 .slide-media {
   flex: 1.25 1 560px;
@@ -591,6 +616,8 @@ main:focus { outline: none; }
   padding: 36px;
   border-radius: 18px;
   background: hsl(var(--hue) var(--media-s) var(--media-l));
+  /* Soft inner shading so the screenshot sits "in" the panel */
+  box-shadow: inset 0 1px 2px rgba(23, 26, 60, .06), inset 0 0 0 1px rgba(23, 26, 60, .04), inset 0 -60px 80px -60px rgba(35, 32, 110, .12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -602,7 +629,7 @@ main:focus { outline: none; }
   max-width: 540px;
   border-radius: 14px;
   background: var(--card);
-  box-shadow: 0 18px 44px rgba(30, 30, 80, .14);
+  box-shadow: 0 2px 6px rgba(23, 26, 60, .10), 0 30px 54px -16px rgba(35, 32, 110, .40);
   overflow: hidden;
 }
 .browser-bar {
@@ -675,12 +702,14 @@ main:focus { outline: none; }
   color: var(--ink);
   font-size: 14px;
   font-weight: 500;
-  transition: background-color .2s, color .2s, border-color .2s;
+  box-shadow: var(--shadow-xs);
+  transition: background-color .2s, color .2s, border-color .2s, box-shadow .2s;
 }
 .carousel-picker button[aria-current="true"] {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--accent-ink);
+  box-shadow: var(--shadow-accent);
 }
 
 /* With JavaScript: one slide at a time */
@@ -693,6 +722,40 @@ main:focus { outline: none; }
 @keyframes slide-in {
   from { opacity: 0; transform: translateX(var(--from, 24px)); }
   to { opacity: 1; transform: none; }
+}
+
+/* Tablet & phone: swipeable card stack (driven by index.js).
+   The active card follows the finger and flies off when released; the next
+   card peeks out from underneath and grows into place. */
+@media (max-width: 1023px) {
+  .js .slides { position: relative; padding-bottom: 14px; }
+  .js .slide { transform-origin: 50% 100%; -webkit-user-select: none; user-select: none; }
+  .js .slide img { -webkit-user-drag: none; }
+  .js .slide.is-active { position: relative; z-index: 2; cursor: grab; }
+  .js .slides.is-dragging .slide.is-active { cursor: grabbing; }
+
+  /* The card underneath: same box as the active card, nudged down and shrunk */
+  .js .slide.is-behind {
+    display: flex;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 14px;
+    z-index: 1;
+    transform: translateY(14px) scale(.95);
+    box-shadow: var(--highlight), var(--shadow-md);
+    pointer-events: none;
+    animation: none;
+  }
+  .js .slide.is-behind > * { opacity: .55; }
+
+  /* When the card underneath becomes the active one */
+  .js .slide.is-active[data-enter="stack"] { animation: stack-in .32s cubic-bezier(.2, .8, .2, 1); }
+  /* After a swipe/fly the card has already grown into place: no extra entrance */
+  .js .slide.is-active[data-enter="none"] { animation: none; }
+}
+
+@keyframes stack-in {
+  from { transform: translateY(14px) scale(.95); }
+  to { transform: none; }
 }
 
 /* ---------- About ---------- */
@@ -719,7 +782,7 @@ main:focus { outline: none; }
   border-radius: 28px;
   overflow: hidden;
   background: #C9CDE3;
-  box-shadow: 0 30px 70px rgba(30, 30, 80, .16);
+  box-shadow: var(--shadow-xl);
 }
 .about-photo {
   position: absolute;
@@ -896,7 +959,7 @@ main:focus { outline: none; }
   border: 1px solid var(--line);
 }
 
-.service-accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.service-accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); box-shadow: var(--shadow-accent); }
 .service-accent p { color: inherit; }
 .service-accent .service-icon { background: rgba(255, 255, 255, .18); color: inherit; }
 [data-theme="dark"] .service-accent .service-icon { background: rgba(17, 17, 42, .12); }
@@ -922,6 +985,7 @@ main:focus { outline: none; }
   border-radius: 32px;
   background: var(--band);
   border: 1px solid var(--band-line);
+  box-shadow: var(--highlight), var(--shadow-lg);
   color: #EDEFFA;
   display: flex;
   flex-direction: column;
@@ -1186,6 +1250,11 @@ html.sheet-active:not(.dialog-open) body { padding-bottom: calc(96px + env(safe-
 /* The sticky "Let's talk" button steps aside while the sheet is open or minimized */
 html.sheet-active .mobile-cta { display: none !important; }
 
+[data-theme="dark"] .slide-media {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), inset 0 0 0 1px rgba(255, 255, 255, .03), inset 0 -60px 80px -60px rgba(0, 0, 0, .35);
+}
+[data-theme="dark"] .browser { box-shadow: 0 2px 6px rgba(0, 0, 0, .4), 0 30px 54px -16px rgba(0, 0, 0, .7); }
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -1260,7 +1329,8 @@ html.sheet-active .mobile-cta { display: none !important; }
   .slide-desc { font-size: 15px; }
   .slide-body .btn-row .btn { flex: 1 1 auto; }
 
-  .carousel-picker { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  /* Extra padding (offset by negative margin) so chip shadows aren't clipped by the scroll area */
+  .carousel-picker { flex-wrap: nowrap; overflow-x: auto; padding: 6px 6px 16px; margin: -6px -6px -12px; scrollbar-width: none; }
   .carousel-picker::-webkit-scrollbar { display: none; }
   .carousel-picker button { flex: none; }
 
