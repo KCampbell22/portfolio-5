@@ -1016,6 +1016,132 @@ main:focus { outline: none; }
 .form-status.is-error { color: #FCA5A5; }
 .form-status.is-success { color: #86EFAC; }
 
+/* ---------- Mobile "Let's talk" button + full-screen contact dialog ---------- */
+
+/* Only ever shown on phones (see the 760px media query below) */
+.mobile-cta,
+.mobile-cta[hidden] { display: none; }
+
+/* Phones: a bottom sheet. Full width, anchored to the bottom, with a strip
+   of the dimmed page left showing at the top (tap it to close). */
+.contact-dialog {
+  --sheet-gap: calc(32px + env(safe-area-inset-top));
+  position: fixed;
+  inset: auto 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100% - var(--sheet-gap));
+  height: calc(100dvh - var(--sheet-gap));
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  /* Same color as the sheet in light mode; a faint edge in dark mode */
+  border: 1px solid var(--band-line);
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+  background: var(--band);
+  color: #EDEFFA;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, .3);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Keep focused fields clear of the sticky dialog header */
+  scroll-padding-top: 104px;
+}
+.contact-dialog[open] { animation: sheet-up .35s cubic-bezier(.2, .8, .2, 1); }
+.contact-dialog::backdrop {
+  background: rgba(10, 12, 25, .55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.contact-dialog[open]::backdrop { animation: fade-in .35s ease; }
+.contact-dialog :focus-visible { outline-color: #A9A6FF; }
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Tablets and up (if the dialog is ever opened there): a centered card */
+@media (min-width: 761px) {
+  .contact-dialog {
+    inset: 0;
+    margin: auto;
+    width: min(640px, calc(100% - 48px));
+    height: auto;
+    max-height: calc(100dvh - 48px);
+    border-bottom: 1px solid var(--band-line);
+    border-radius: 24px;
+  }
+  .contact-dialog[open] { animation: fade-in .25s ease; }
+  .contact-dialog .dialog-head::before { display: none; }
+}
+
+.dialog-inner {
+  min-height: 100%;
+  padding: 16px 20px calc(28px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dialog-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: -16px -20px 0;
+  padding: 24px 20px 12px;
+  background: var(--band);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+/* Grab handle, so it reads as a sheet */
+.dialog-head::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 40px;
+  height: 5px;
+  margin-left: -20px;
+  border-radius: 999px;
+  background: rgba(237, 239, 250, .3);
+}
+.dialog-head h2 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.dialog-close {
+  width: 44px; height: 44px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(237, 239, 250, .25);
+  background: transparent;
+  color: #EDEFFA;
+}
+.dialog-intro { font-size: 16px; line-height: 1.6; color: #C3C7DE; }
+.dialog-call { align-self: stretch; }
+
+.contact-dialog .contact-form {
+  padding-top: 20px;
+  grid-template-columns: 1fr;
+  scroll-margin-top: 0;
+}
+.contact-dialog .form-foot .btn { width: 100%; }
+
+/* Stop the page behind the dialog from scrolling (iOS ignores it otherwise) */
+html.dialog-open,
+html.dialog-open body { overflow: hidden; }
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -1061,6 +1187,23 @@ main:focus { outline: none; }
   .hero-text { font-size: 17px; }
   .hero-visual { min-width: 0; height: 440px; }
   .hero-checks { top: 20px; left: -8px; }
+
+  .mobile-cta:not([hidden]) {
+    display: block;
+    position: fixed;
+    left: 12px; right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    z-index: 40;
+    transform: translateY(calc(100% + 24px));
+    visibility: hidden;
+    transition: transform .3s cubic-bezier(.2, .8, .2, 1), visibility .3s;
+  }
+  .mobile-cta.is-visible { transform: none; visibility: visible; }
+  .mobile-cta-btn {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(30, 30, 80, .28);
+  }
 
   .strip-wrap { padding-bottom: 56px; }
   .strip { padding: 18px 20px; }

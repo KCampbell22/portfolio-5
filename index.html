@@ -48,12 +48,18 @@
   }
   </script>
 
-  <!-- Apply the saved (or system) theme before first paint so the page doesn't flash -->
+  <!-- Set the theme before first paint so the page doesn't flash.
+       Dark from 7pm to 7am on the visitor's clock, unless they picked a theme this visit
+       (keep the hours in sync with NIGHT_START / NIGHT_END in index.js). -->
   <script>
     (function () {
       var saved = null;
-      try { saved = localStorage.getItem("theme"); } catch (e) {}
-      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      try {
+        saved = sessionStorage.getItem("theme");
+        localStorage.removeItem("theme"); // older versions remembered the choice forever
+      } catch (e) {}
+      var hour = new Date().getHours();
+      var dark = saved ? saved === "dark" : (hour >= 19 || hour < 7);
       document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
       document.documentElement.classList.add("js");
     })();
@@ -634,6 +640,33 @@
       <li><a href="#">Back to top <span aria-hidden="true">↑</span></a></li>
     </ul>
   </footer>
+
+  <!-- Phones only: sticky "Let's talk" button that opens the contact form full screen.
+       Shown by index.js once the hero is scrolled past; hidden near the contact section. -->
+  <div class="mobile-cta" hidden>
+    <button type="button" class="btn btn-accent btn-lg mobile-cta-btn" aria-haspopup="dialog" aria-controls="contact-dialog">
+      Let's talk
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <!-- The contact form is moved into this dialog while it's open, then moved back,
+       so there's only ever one form (Netlify needs it in the page HTML). -->
+  <dialog id="contact-dialog" class="contact-dialog" aria-labelledby="contact-dialog-title">
+    <div class="dialog-inner">
+      <div class="dialog-head">
+        <h2 id="contact-dialog-title">Let's talk</h2>
+        <button type="button" class="dialog-close" aria-label="Close contact form">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <p class="dialog-intro">Tell me about the project, or book a free 30-minute intro call instead.</p>
+      <a href="https://calendly.com/kadecampbelldev" class="btn btn-ghost-dark js-calendly dialog-call" target="_blank" rel="noopener">Book an intro call<span class="visually-hidden"> (opens scheduling)</span>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <div class="dialog-form-slot"></div>
+    </div>
+  </dialog>
 
 </body>
 </html>

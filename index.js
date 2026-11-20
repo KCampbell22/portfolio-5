@@ -1,9 +1,23 @@
 /* ==========================================================================
-   Theme toggle (light / dark), saved in localStorage.
-   The initial theme is set by an inline script in <head> to avoid a flash.
+   Theme (light / dark)
+   By default it follows the visitor's clock: dark from NIGHT_START to NIGHT_END.
+   Using the toggle overrides that for the rest of the visit (sessionStorage).
+   The initial theme is set by an inline script in <head> to avoid a flash;
+   keep its hours in sync with these.
    ========================================================================== */
+const NIGHT_START = 19; // 7pm
+const NIGHT_END = 7;    // 7am
 const root = document.documentElement;
 const themeButtons = document.querySelectorAll(".theme-toggle");
+
+const isNight = () => {
+  const hour = new Date().getHours();
+  return hour >= NIGHT_START || hour < NIGHT_END;
+};
+
+const hasManualTheme = () => {
+  try { return sessionStorage.getItem("theme") !== null; } catch (e) { return false; }
+};
 
 const syncThemeButtons = () => {
   const dark = root.getAttribute("data-theme") === "dark";
@@ -17,11 +31,21 @@ themeButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (e) { /* private mode */ }
+    try { sessionStorage.setItem("theme", next); } catch (e) { /* private mode */ }
     syncThemeButtons();
   });
 });
 syncThemeButtons();
+
+// If the page is left open across 7am/7pm, switch over (unless they picked a theme)
+setInterval(() => {
+  if (hasManualTheme()) return;
+  const wanted = isNight() ? "dark" : "light";
+  if (root.getAttribute("data-theme") !== wanted) {
+    root.setAttribute("data-theme", wanted);
+    syncThemeButtons();
+  }
+}, 60 * 1000);
 
 /* ==========================================================================
    Mobile menu
@@ -203,6 +227,82 @@ form.addEventListener("submit", (event) => {
 form.setAttribute("novalidate", "");
 
 /* ==========================================================================
+   Phones: sticky "Let's talk" button + full-screen contact dialog.
+   The one contact form is moved into the dialog while it's open and moved
+   back afterwards, so Netlify still sees a single form in the page.
+   ========================================================================== */
+const contactDialog = document.querySelector("#contact-dialog");
+const mobileCta = document.querySelector(".mobile-cta");
+
+const closeContactDialog = () => {
+  if (contactDialog && contactDialog.open) contactDialog.close();
+};
+
+if (contactDialog && mobileCta && typeof contactDialog.showModal === "function") {
+  const ctaButton = mobileCta.querySelector("button");
+  const slot = contactDialog.querySelector(".dialog-form-slot");
+  const dialogTitle = contactDialog.querySelector("#contact-dialog-title");
+  const formHome = document.createComment(" contact form returns here ");
+  form.before(formHome);
+  let addedHistoryEntry = false;
+
+  ctaButton.addEventListener("click", () => {
+    slot.appendChild(form);
+    contactDialog.showModal();
+    root.classList.add("dialog-open");
+    contactDialog.scrollTop = 0;
+    // Start screen readers at the title rather than popping the keyboard open
+    dialogTitle.setAttribute("tabindex", "-1");
+    dialogTitle.focus();
+    // So the phone's back button closes the form instead of leaving the page
+    history.pushState({ contactDialog: true }, "");
+    addedHistoryEntry = true;
+  });
+
+  contactDialog.querySelector(".dialog-close").addEventListener("click", closeContactDialog);
+
+  // Tapping the dimmed page above the sheet closes it. Clicks on the backdrop
+  // report the dialog itself as the target; anything typed stays in the form.
+  contactDialog.addEventListener("click", (event) => {
+    if (event.target === contactDialog) closeContactDialog();
+  });
+
+  // Fires for the close button, Escape, and the back button alike
+  contactDialog.addEventListener("close", () => {
+    formHome.after(form);
+    root.classList.remove("dialog-open");
+    if (addedHistoryEntry) {
+      addedHistoryEntry = false;
+      history.back();
+    }
+    ctaButton.focus({ preventScroll: true });
+  });
+
+  window.addEventListener("popstate", () => {
+    if (contactDialog.open) {
+      addedHistoryEntry = false; // the browser already went back
+      contactDialog.close();
+    }
+  });
+
+  // Show the button only between the hero and the contact section
+  mobileCta.hidden = false;
+  const inView = new Map();
+  const watched = [
+    document.querySelector(".hero"),
+    document.querySelector("#contact"),
+    document.querySelector(".site-footer"),
+  ].filter(Boolean);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => inView.set(entry.target, entry.isIntersecting));
+    const show = watched.every((el) => !inView.get(el));
+    mobileCta.classList.toggle("is-visible", show);
+  });
+  watched.forEach((el) => observer.observe(el));
+}
+
+/* ==========================================================================
    Calendly: load its script/styles only when someone clicks "Book a call",
    so visitors who never book don't pay for the third-party download.
    ========================================================================== */
@@ -230,6 +330,8 @@ const loadCalendly = () => {
 document.querySelectorAll(".js-calendly").forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
+    // Calendly's popup can't appear above an open modal, so close the form first
+    if (link.closest("dialog")) closeContactDialog();
     loadCalendly()
       .then(() => window.Calendly.initPopupWidget({ url: CALENDLY_URL }))
       // If Calendly can't load (blocked, offline), fall back to its page
