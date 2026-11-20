@@ -506,6 +506,26 @@ main:focus { outline: none; }
 .hero-card-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; }
 .hero-card-role { margin-top: 2px; font-size: 14px; color: var(--muted); }
 
+/* Floating checklist, overlapping the left edge of the headshot card */
+.hero-checks {
+  position: absolute;
+  top: 40px; left: -24px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 30px rgba(30, 30, 80, .12);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.hero-checks li { display: flex; align-items: center; gap: 8px; }
+.hero-checks svg { color: var(--success); }
+
 /* ---------- Workflow strip ---------- */
 
 .strip-wrap { padding-bottom: 72px; }
@@ -1040,6 +1060,7 @@ main:focus { outline: none; }
   .hero-title { font-size: 44px; }
   .hero-text { font-size: 17px; }
   .hero-visual { min-width: 0; height: 440px; }
+  .hero-checks { top: 20px; left: -8px; }
 
   .strip-wrap { padding-bottom: 56px; }
   .strip { padding: 18px 20px; }
