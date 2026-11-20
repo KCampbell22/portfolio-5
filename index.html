@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kade Campbell, freelance web developer in Grimes, IA: React apps, custom websites, Figma-to-code, landing pages and accessibility for agencies and businesses.">
-  <meta name="theme-color" content="#151515">
+  <meta name="description" content="Kade Campbell, freelance web developer in Grimes, Iowa (Des Moines area): React apps, custom websites, Figma-to-code, landing pages and accessibility for agencies and businesses.">
+  <meta name="theme-color" content="#F7F8FC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1120" media="(prefers-color-scheme: dark)">
   <title>Kade Campbell | Freelance Web Developer – React &amp; Front-End</title>
 
   <link rel="canonical" href="https://www.kadecampbelldev.com/">
@@ -28,6 +29,11 @@
     "url": "https://www.kadecampbelldev.com/",
     "image": "https://www.kadecampbelldev.com/images/headshot.jpg",
     "jobTitle": "Freelance Web Developer",
+    "description": "Freelance front-end and React developer building fast, accessible websites and web apps for agencies and businesses.",
+    "areaServed": [
+      { "@type": "City", "name": "Des Moines, IA" },
+      { "@type": "Country", "name": "United States" }
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Grimes",
@@ -42,348 +48,552 @@
   }
   </script>
 
+  <!-- Apply the saved (or system) theme before first paint so the page doesn't flash -->
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="icon" type="image/x-icon" href="./images/favIcon.ico">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="./normalize.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load the web fonts without blocking the first paint (system fonts show until they arrive) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <header class="wrapper">
-    <nav class="site-nav" aria-label="Main">
+  <div class="nav-wrap">
+    <header class="site-header">
       <a href="#" class="brand" aria-label="Kade Campbell, back to top">
-        kadecampbell
-        <img src="./images/logo-removebg-preview (1).png" alt="" class="brand-logo">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        kadecampbell.dev
       </a>
-      <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <ul class="socials">
-        <li><a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)"><img src="./images/icon-linkedin.svg" alt=""></a></li>
-        <li><a href="https://github.com/KCampbell22" target="_blank" rel="noopener" aria-label="GitHub (opens in new tab)"><img src="./images/icon-github.svg" alt=""></a></li>
-      </ul>
-    </nav>
 
-    <section class="hero">
-      <div>
-        <h1 class="hero-title">I'm <span class="blue-underline">Kade Campbell</span>, a freelance web developer.</h1>
-        <p class="hero-text">I turn Figma and Photoshop designs into fast, accessible websites and React apps for agencies and the businesses they serve, from landing pages to full builds, redesigns and performance tune-ups. Nearly four years of professional, client-facing experience, based in Grimes, Iowa and working remotely.</p>
-        <div class="hero-actions">
-          <a href="#contact" class="link-underline">Start a project</a>
-          <a href="#projects" class="link-underline">See my work</a>
+      <button type="button" class="icon-btn menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <svg class="icon-open" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <svg class="icon-close" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile">
+        <a href="#projects"><span class="num">01</span>Work</a>
+        <a href="#about"><span class="num">02</span>About</a>
+        <a href="#experience"><span class="num">03</span>Experience</a>
+        <a href="#services"><span class="num">04</span>Services</a>
+        <a href="#contact"><span class="num">05</span>Contact</a>
+        <div class="mobile-menu-actions">
+          <a href="#contact" class="btn btn-accent">Let's talk</a>
+          <button type="button" class="icon-btn theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
+            <svg class="icon-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="icon-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          </button>
         </div>
+        <div class="mobile-menu-socials">
+          <a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a href="https://github.com/KCampbell22" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in new tab)</span></a>
+        </div>
+      </nav>
+
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="#projects">Work</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#services">Services</a>
+        <button type="button" class="icon-btn theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
+          <svg class="icon-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a href="#contact" class="btn btn-ink nav-cta">Let's talk</a>
+      </nav>
+    </header>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <!-- Hero -->
+    <section class="container hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <!-- TODO: keep these hours current, or remove this badge -->
+        <p class="pill"><span class="status-dot" aria-hidden="true"></span>Booking new projects · 10–20 hrs/wk</p>
+        <h1 id="hero-title" class="hero-title"><span class="hero-kicker">Kade Campbell · Freelance web developer</span> Your designs, built fast and <span class="hero-underline">accessible</span>.</h1>
+        <p class="hero-text">I'm Kade Campbell, a freelance front-end and React developer. Agencies send me Figma and Photoshop files; I send back clean, mobile-first builds, white-label and on deadline. Based in Grimes, near Des Moines, Iowa, and working remotely.</p>
+        <div class="btn-row">
+          <a href="#contact" class="btn btn-accent btn-lg">Start a project
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#projects" class="btn btn-outline btn-lg">See my work</a>
+        </div>
+        <dl class="hero-facts">
+          <div><dt>Experience</dt><dd>~4 years</dd></div>
+          <div><dt>Core stack</dt><dd>React · JS · CSS</dd></div>
+          <div><dt>Based in</dt><dd>Grimes, Iowa</dd></div>
+        </dl>
       </div>
-      <div class="hero-image">
-        <img src="./images/headshot.jpg" class="headshot" width="800" height="652" alt="Headshot of Kade Campbell">
+
+      <div class="hero-visual">
+        <div class="hero-outline" aria-hidden="true"></div>
+        <div class="hero-card">
+          <div class="hero-photo">
+            <img src="./images/headshot.jpg" width="800" height="652" fetchpriority="high" decoding="async" alt="Headshot of Kade Campbell">
+          </div>
+          <div class="hero-card-foot">
+            <div>
+              <p class="hero-card-name">Kade Campbell</p>
+              <p class="hero-card-role">Front-end &amp; React developer</p>
+            </div>
+            <span class="chip">Remote</span>
+          </div>
+        </div>
+        <ul class="hero-checks" aria-label="What every build includes">
+          <li><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>WCAG-minded</li>
+          <li><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Core Web Vitals</li>
+          <li><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Mobile-first</li>
+        </ul>
       </div>
     </section>
-  </header>
 
-  <main id="main" class="wrapper" tabindex="-1">
-    <section id="services" class="services">
-      <h2 class="section-title">Available for contract work</h2>
-      <p class="services-text">Need an extra developer? I take on contract and overflow work for agencies,
-        from a single landing page to a full React build, and I'm comfortable working directly with your clients.</p>
-      <div class="service-groups">
-        <div class="service-group">
-          <h3>Custom Web &amp; React Development</h3>
+    <!-- Workflow strip -->
+    <section class="container strip-wrap" aria-label="How I fit into your agency">
+      <div class="strip">
+        <p class="strip-title">Plugs into your agency's workflow</p>
+        <ul class="strip-list">
+          <li>Slack</li><li aria-hidden="true">·</li>
+          <li>Figma</li><li aria-hidden="true">·</li>
+          <li>GitHub</li><li aria-hidden="true">·</li>
+          <li>Project boards</li><li aria-hidden="true">·</li>
+          <li>White-label</li><li aria-hidden="true">·</li>
+          <li>NDA-ready</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects carousel (without JavaScript every project is shown in a list) -->
+    <section id="projects" class="container section carousel" aria-roledescription="carousel" aria-labelledby="projects-title">
+      <div class="eyebrow-row">
+        <p class="eyebrow">01 <span aria-hidden="true">/</span> work</p>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="eyebrow-note">selected projects</p>
+      </div>
+      <div class="section-head">
+        <h2 id="projects-title" class="section-title">Things I've built</h2>
+        <div class="carousel-controls">
+          <p class="carousel-count" aria-live="polite"><span class="carousel-pos">01</span> / <span class="carousel-total">09</span></p>
+          <button type="button" class="nav-btn carousel-prev" aria-label="Previous project">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="nav-btn nav-btn-accent carousel-next" aria-label="Next project">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="slides">
+        <article class="slide" data-short="St. Louis County" data-hue="245" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/stl-county-portal.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of St. Louis County's permitting and contractor licensing portal">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Client work</p>
+            <h3>St. Louis County Portal</h3>
+            <p class="slide-desc">Redesigned the county's public permitting and contractor licensing portal to match its new brand, customizing the Accela Citizen Access platform.</p>
+            <ul class="tags" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>Accela</li></ul>
+            <div class="btn-row">
+              <a href="https://aca-prod.accela.com/SLC/Default.aspx" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: St. Louis County Portal (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="Scheduler" data-hue="265" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <video controls preload="metadata" playsinline aria-label="Screen recording demo of the Scheduler App" aria-describedby="scheduler-desc">
+                <source src="./Screen Recording 2022-12-09 at 11.08.12 PM (1).mp4#t=0.1" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <!-- Text alternative for the silent video (WCAG 1.2.1) -->
+            <p id="scheduler-desc" class="visually-hidden">Silent 58-second walkthrough of the Scheduler App, a task delegation web app built with ASP.NET Core, starting from its welcome and sign-in screen.</p>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Web app</p>
+            <h3>Scheduler App</h3>
+            <p class="slide-desc">Task delegation web app with a full back end. Includes a short video walkthrough.</p>
+            <ul class="tags" aria-label="Technologies"><li>C#</li><li>ASP.NET Core</li><li>Entity Framework Core</li></ul>
+            <div class="btn-row">
+              <a href="https://github.com/KCampbell22/TaskDelegatingWebApp" class="btn btn-ink" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: Scheduler App (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="Currency Exchange" data-hue="190" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/currency-app.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Currency Exchange App">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">React app</p>
+            <h3>Currency Exchange App</h3>
+            <p class="slide-desc">Currency conversion app powered by the <a href="https://www.frankfurter.app/" target="_blank" rel="noopener">Frankfurter API<span class="visually-hidden"> (opens in new tab)</span></a>.</p>
+            <ul class="tags" aria-label="Technologies"><li>React</li><li>Frankfurter API</li></ul>
+            <div class="btn-row">
+              <a href="https://kcampbell22.github.io/currency-converter/" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: Currency Exchange App (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="https://github.com/KCampbell22/exhange-app-code" class="btn btn-outline" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: Currency Exchange App (opens in new tab)</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="Movie Finder" data-hue="300" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/movie-finder.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Movie Finder App">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">React app</p>
+            <h3>Movie Finder App</h3>
+            <p class="slide-desc">Movie search app powered by the <a href="https://www.omdbapi.com/" target="_blank" rel="noopener">OMDb API<span class="visually-hidden"> (opens in new tab)</span></a>.</p>
+            <ul class="tags" aria-label="Technologies"><li>React</li><li>OMDb API</li></ul>
+            <div class="btn-row">
+              <a href="https://kcampbell22.github.io/final/" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: Movie Finder App (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="https://github.com/KCampbell22/movie-finder-react" class="btn btn-outline" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: Movie Finder App (opens in new tab)</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="ABC Creations" data-hue="210" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/abc.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the ABC Creations site">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Website</p>
+            <h3>ABC Creations</h3>
+            <!-- TODO: replace with a one-line description of ABC Creations -->
+            <p class="slide-desc">Business website hand-built with HTML, CSS and JavaScript.</p>
+            <ul class="tags" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            <div class="btn-row">
+              <a href="https://abc-creations.netlify.app/" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: ABC Creations (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="https://github.com/KCampbell22/ABC-Creations" class="btn btn-outline" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: ABC Creations (opens in new tab)</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="Endurance+" data-hue="170" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/endurance.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Endurance+ landing page">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Landing page</p>
+            <h3>Endurance+</h3>
+            <p class="slide-desc">Responsive marketing landing page.</p>
+            <ul class="tags" aria-label="Technologies"><li>HTML</li><li>CSS</li></ul>
+            <div class="btn-row">
+              <a href="https://e-plus.netlify.app/" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: Endurance+ (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="https://github.com/KCampbell22/E-plus-landing" class="btn btn-outline" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: Endurance+ (opens in new tab)</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="Portfolio" data-hue="230" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/portfolio.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of this portfolio site's homepage">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Personal</p>
+            <h3>Portfolio Site</h3>
+            <p class="slide-desc">This site, hand-built without templates.</p>
+            <ul class="tags" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            <div class="btn-row">
+              <a href="https://github.com/KCampbell22/portfolio-5" class="btn btn-ink" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: Portfolio Site (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="Airbnb Clone" data-hue="330" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/airbnb.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Airbnb Newsroom clone">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Practice build</p>
+            <h3>Airbnb Clone</h3>
+            <p class="slide-desc">Layout recreation of the Airbnb Newsroom, built with Bootstrap.</p>
+            <ul class="tags" aria-label="Technologies"><li>Bootstrap</li><li>HTML</li><li>CSS</li></ul>
+            <div class="btn-row">
+              <a href="https://bnb-newsroom-clone-kade-campbell.netlify.app/" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: Airbnb Clone (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="https://github.com/KCampbell22/aribnb_news_clone" class="btn btn-outline" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: Airbnb Clone (opens in new tab)</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-short="Newsweekly" data-hue="220" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/news-weekly.jpg" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Newsweekly clone">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Practice build</p>
+            <h3>Newsweekly Clone</h3>
+            <p class="slide-desc">News layout recreation built with Bootstrap.</p>
+            <ul class="tags" aria-label="Technologies"><li>Bootstrap</li><li>HTML</li><li>CSS</li></ul>
+            <div class="btn-row">
+              <a href="https://newsweekly-clone-kade-campbell.netlify.app/" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: Newsweekly Clone (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="https://github.com/KCampbell22/Newsweekly-Kade" class="btn btn-outline" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: Newsweekly Clone (opens in new tab)</span></a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="carousel-footer">
+        <div class="progress" aria-hidden="true"><div class="progress-bar"></div></div>
+        <div class="carousel-picker" role="group" aria-label="Choose a project"></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="container section" aria-labelledby="about-title">
+      <div class="eyebrow-row">
+        <p class="eyebrow">02 <span aria-hidden="true">/</span> about</p>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="eyebrow-note">the person behind the code</p>
+      </div>
+      <div class="about-frame">
+        <div class="about-outline" aria-hidden="true"></div>
+        <div class="about-dots" aria-hidden="true"></div>
+        <div class="about-card">
+          <img class="about-photo" src="./images/about-headshot.jpg" width="948" height="664" loading="lazy" decoding="async" alt="Black-and-white photo of Kade Campbell smiling outdoors">
+          <p class="about-now">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span><span class="muted-dark">Currently</span> <strong>Tech Consultant @ Accela</strong></span>
+          </p>
+          <pre class="about-code" aria-hidden="true"><span class="c-kw">const</span> kade = {
+  remote: <span class="c-bool">true</span>,
+  timezone: <span class="c-str">"CT"</span>,
+  based: <span class="c-str">"Grimes, IA"</span>
+};</pre>
+          <div class="about-panel">
+            <div class="about-intro">
+              <h2 id="about-title">Developer by trade, consultant by day.</h2>
+              <p>I sit between clients and code. At Accela I turn client requirements into working solutions with PMs, QA and engineering. On the side, I build fast, accessible websites for agencies.</p>
+            </div>
+            <ol class="timeline" aria-label="Career">
+              <li>
+                <span class="timeline-mark" aria-hidden="true"><span class="dot dot-fill"></span><span class="line"></span></span>
+                <div>
+                  <p class="timeline-date">2025 — now</p>
+                  <p class="timeline-role">Tech Consultant · Accela</p>
+                  <p class="timeline-sub">Requirements, workshops and client training</p>
+                </div>
+              </li>
+              <li>
+                <span class="timeline-mark" aria-hidden="true"><span class="dot"></span></span>
+                <div>
+                  <p class="timeline-date">2023 — 2025</p>
+                  <p class="timeline-role">Applications Developer · St. Louis County</p>
+                  <p class="timeline-sub">Led the public portal redesign during the rebrand</p>
+                </div>
+              </li>
+            </ol>
+            <ul class="skill-tags" aria-label="Core skills">
+              <li>React</li><li>JavaScript</li><li>HTML/CSS</li><li>SQL</li><li>Figma</li><li>Photoshop</li><li>Accela</li>
+            </ul>
+            <div class="about-actions">
+              <a href="https://calendly.com/kadecampbelldev" class="btn btn-white js-calendly" target="_blank" rel="noopener">Book a free intro call<span class="visually-hidden"> (opens scheduling)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="#experience" class="text-link">Full experience</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="container section" aria-labelledby="experience-title">
+      <div class="eyebrow-row">
+        <p class="eyebrow">03 <span aria-hidden="true">/</span> experience</p>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="eyebrow-note">where I've worked</p>
+      </div>
+      <h2 id="experience-title" class="section-title">Experience</h2>
+
+      <div class="jobs">
+        <article class="card job">
+          <p class="job-dates">Jan 2025 – Present</p>
+          <div>
+            <h3>Tech Consultant</h3>
+            <p class="job-company">Accela (formerly ePermitHub)</p>
+            <ul class="job-points">
+              <li>Work directly with clients to gather requirements and turn them into configured, working solutions</li>
+              <li>Lead workshops and training sessions to get client teams up and running</li>
+              <li>Coordinate with project managers, QA and engineering to deliver projects smoothly and fix issues quickly</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card job">
+          <p class="job-dates">Feb 2023 – Jan 2025</p>
+          <div>
+            <h3>Applications Developer</h3>
+            <p class="job-company">St. Louis County</p>
+            <p class="job-note">Contract-to-hire through TEKsystems; brought on full-time after 2 months</p>
+            <ul class="job-points">
+              <li>Led the redesign of the county's <a href="https://aca-prod.accela.com/SLC/Default.aspx" target="_blank" rel="noopener">public-facing web portal<span class="visually-hidden"> (opens in new tab)</span></a> to match its new brand identity, using HTML and CSS</li>
+              <li>Partnered with multiple county departments to translate their processes into custom software workflows</li>
+              <li>Wrote JavaScript business logic and SQL to automate processes</li>
+              <li>Handled both day-to-day support tickets and larger projects</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="container section" aria-labelledby="services-title">
+      <div class="eyebrow-row">
+        <p class="eyebrow">04 <span aria-hidden="true">/</span> services</p>
+        <span class="rule" aria-hidden="true"></span>
+        <p class="eyebrow-note">contract &amp; overflow work</p>
+      </div>
+      <h2 id="services-title" class="section-title section-title-narrow">From landing pages to full React builds.</h2>
+
+      <div class="services-grid">
+        <article class="card service service-wide">
+          <div class="service-main">
+            <span class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+            </span>
+            <h3>Custom web &amp; React development</h3>
+            <p>Semantic HTML, CSS and JavaScript with no bloated templates, plus React apps and component libraries built to your design system.</p>
+          </div>
           <ul class="service-list">
-            <li><strong>Custom React web apps.</strong> Fast, interactive single-page apps built around your business logic and user workflows.</li>
-            <li><strong>Custom website development.</strong> Clean, semantic, high-performing sites in modern HTML, CSS and JavaScript, with no bloated templates.</li>
-            <li><strong>Figma / design-to-code.</strong> Figma and Photoshop mockups turned into pixel-perfect, interactive front ends with smooth animations.</li>
-            <li><strong>UI component libraries.</strong> Reusable React component systems that keep your product consistent as it grows.</li>
-          </ul>
-        </div>
-        <div class="service-group">
-          <h3>User Experience &amp; Optimization</h3>
-          <ul class="service-list">
-            <li><strong>Responsive, mobile-first builds.</strong> Layouts that work smoothly on desktops, tablets and phones.</li>
-            <li><strong>Performance &amp; speed.</strong> Audits and refactors that shrink assets and bundles and improve Core Web Vitals.</li>
-            <li><strong>Redesigns &amp; modernization.</strong> Legacy sites and outdated codebases rebuilt as modern React apps with better navigation and usability.</li>
-            <li><strong>Accessibility (WCAG).</strong> Interfaces built and audited with semantic HTML and ARIA so every visitor can use them.</li>
-          </ul>
-        </div>
-        <div class="service-group">
-          <h3>Integrations &amp; Deployment</h3>
-          <ul class="service-list">
-            <li><strong>API &amp; third-party integrations.</strong> Front ends connected cleanly to back ends, headless CMSs, payment gateways and SaaS tools.</li>
-            <li><strong>High-converting landing pages.</strong> Fast, interactive marketing and launch pages built to capture leads.</li>
-          </ul>
-        </div>
-      </div>
-      <a href="#contact" class="link-underline">Let's work together</a>
-    </section>
-
-    <section class="skills" aria-labelledby="skills-title">
-      <h2 id="skills-title" class="visually-hidden">Skills</h2>
-      <div class="skill-grid">
-        <div class="skill"><h3>React</h3><p>4 Years of Experience</p></div>
-        <div class="skill"><h3>JavaScript</h3><p>5 Years of Experience</p></div>
-        <div class="skill"><h3>HTML</h3><p>6 Years of Experience</p></div>
-        <div class="skill"><h3>CSS</h3><p>6 Years of Experience</p></div>
-      </div>
-      <p class="skills-also">Also: <span>SQL</span> · <span>Figma</span> · <span>Photoshop</span></p>
-    </section>
-
-    <section id="projects">
-      <div class="projects-header">
-        <h2>Projects</h2>
-        <a href="#contact" class="link-underline">Contact me</a>
-      </div>
-
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/stl-county-portal.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of St. Louis County's permitting and contractor licensing portal">
-            <div class="project-links">
-              <a href="https://aca-prod.accela.com/SLC/Default.aspx" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: St. Louis County Portal (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>St. Louis County Portal</h3>
-          <p class="project-desc">Redesigned the county's public permitting and contractor licensing portal to match its new brand, customizing the Accela Citizen Access platform.</p>
-          <ul class="tags">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Accela</li>
-            <li>Client work</li>
+            <li>React web apps</li>
+            <li>Figma / design-to-code</li>
+            <li>UI component libraries</li>
           </ul>
         </article>
 
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/portfolio.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of this portfolio site's homepage">
-            <div class="project-links">
-              <a href="https://github.com/KCampbell22/portfolio-5" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Portfolio Site (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>Portfolio Site</h3>
-          <ul class="tags">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-          </ul>
+        <article class="card service service-accent">
+          <span class="service-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
+          </span>
+          <h3>UX &amp; optimization</h3>
+          <p>Responsive, mobile-first builds, Core Web Vitals tuning, redesigns and accessibility (WCAG, semantic HTML, ARIA).</p>
         </article>
 
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/abc.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the ABC Creations site">
-            <div class="project-links">
-              <a href="https://abc-creations.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: ABC Creations (opens in new tab)</span></a>
-              <a href="https://github.com/KCampbell22/ABC-Creations" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: ABC Creations (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>ABC Creations</h3>
-          <ul class="tags">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-          </ul>
+        <article class="card service">
+          <span class="service-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4M15 7h4a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4M8 12h8"/></svg>
+          </span>
+          <h3>Integrations &amp; launch</h3>
+          <p>Headless CMS, payments and SaaS APIs, plus high-converting landing pages ready to ship.</p>
         </article>
 
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/currency-app.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Currency Exchange App">
-            <div class="project-links">
-              <a href="https://kcampbell22.github.io/currency-converter/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Currency Exchange App (opens in new tab)</span></a>
-              <a href="https://github.com/KCampbell22/exhange-app-code" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Currency Exchange App (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>Currency Exchange App</h3>
-          <ul class="tags">
-            <li>React</li>
-            <li><a href="https://www.frankfurter.app/" target="_blank" rel="noopener">Frankfurter API<span class="visually-hidden"> (opens in new tab)</span></a></li>
+        <article class="card service service-wide service-agencies">
+          <h3>Working with agencies</h3>
+          <ul class="check-list">
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>White-label friendly</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>NDA-ready</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Works in your tools</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Joins client calls</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Clear communication</li>
+            <!-- TODO: confirm you offer both pricing models -->
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Hourly or fixed-price</li>
           </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/movie-finder.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Movie Finder App">
-            <div class="project-links">
-              <a href="https://kcampbell22.github.io/final/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Movie Finder App (opens in new tab)</span></a>
-              <a href="https://github.com/KCampbell22/movie-finder-react" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Movie Finder App (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>Movie Finder App</h3>
-          <ul class="tags">
-            <li>React</li>
-            <li><a href="https://www.omdbapi.com/" target="_blank" rel="noopener">OMDb API<span class="visually-hidden"> (opens in new tab)</span></a></li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/endurance.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Endurance+ landing page">
-            <div class="project-links">
-              <a href="https://e-plus.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Endurance+ (opens in new tab)</span></a>
-              <a href="https://github.com/KCampbell22/E-plus-landing" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Endurance+ (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>Endurance+</h3>
-          <ul class="tags">
-            <li>HTML</li>
-            <li>CSS</li>
-          </ul>
-        </article>
-
-
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/airbnb.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Airbnb Newsroom clone">
-            <div class="project-links">
-              <a href="https://bnb-newsroom-clone-kade-campbell.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Airbnb Clone (opens in new tab)</span></a>
-              <a href="https://github.com/KCampbell22/aribnb_news_clone" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Airbnb Clone (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>Airbnb Clone</h3>
-          <ul class="tags">
-            <li>Bootstrap</li>
-            <li>HTML</li>
-            <li>CSS</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <div class="project-thumb">
-            <img src="./images/news-weekly.jpg" class="project-media" width="1800" height="1200" loading="lazy" decoding="async" alt="Screenshot of the Newsweekly clone">
-            <div class="project-links">
-              <a href="https://newsweekly-clone-kade-campbell.netlify.app/" target="_blank" rel="noopener">Project Link<span class="visually-hidden">: Newsweekly Clone (opens in new tab)</span></a>
-              <a href="https://github.com/KCampbell22/Newsweekly-Kade" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Newsweekly Clone (opens in new tab)</span></a>
-            </div>
-          </div>
-          <h3>Newsweekly Clone</h3>
-          <ul class="tags">
-            <li>Bootstrap</li>
-            <li>HTML</li>
-            <li>CSS</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <video class="project-media" controls preload="metadata" playsinline aria-label="Screen recording demo of the Scheduler App" aria-describedby="scheduler-desc">
-            <source src="./Screen Recording 2022-12-09 at 11.08.12 PM (1).mp4#t=0.1" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <!-- Text alternative for the silent video (WCAG 1.2.1) -->
-          <p id="scheduler-desc" class="visually-hidden">Silent 58-second walkthrough of the Scheduler App, a task delegation web app built with ASP.NET Core, starting from its welcome and sign-in screen.</p>
-          <h3>Scheduler App</h3>
-          <ul class="tags">
-            <li>C#</li>
-            <li>Entity Framework Core</li>
-            <li>ASP.NET Core</li>
-          </ul>
-          <div class="project-links project-links--static">
-            <a href="https://github.com/KCampbell22/TaskDelegatingWebApp" target="_blank" rel="noopener">GitHub Repo<span class="visually-hidden">: Scheduler App (opens in new tab)</span></a>
-          </div>
         </article>
       </div>
     </section>
 
-    <section id="experience" class="experience">
-      <h2 class="section-title">Experience</h2>
+    <!-- Contact -->
+    <section id="contact" class="container section contact-section" aria-labelledby="cta-title">
+      <div class="contact-band">
+        <div class="contact-dots" aria-hidden="true"></div>
+        <div class="contact-head">
+          <div class="contact-copy">
+            <p class="eyebrow eyebrow-on-dark">05 <span aria-hidden="true">/</span> contact</p>
+            <h2 id="cta-title">Got overflow work? Let's ship it.</h2>
+            <p>Tell me about the project, or grab a free 30-minute intro call. I'll get back to you as soon as possible.</p>
+          </div>
+          <div class="btn-row">
+            <!-- Opens the Calendly popup via index.js; without JavaScript it just opens the booking page -->
+            <a href="https://calendly.com/kadecampbelldev" class="btn btn-lavender btn-lg js-calendly" target="_blank" rel="noopener">Book an intro call<span class="visually-hidden"> (opens scheduling)</span>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#contact-form" class="btn btn-ghost-dark btn-lg">Send a message</a>
+          </div>
+        </div>
 
-      <article class="job">
-        <p class="job-dates">Jan 2025 – Present</p>
-        <div>
-          <h3>Tech Consultant</h3>
-          <p class="job-company">Accela (formerly ePermitHub)</p>
-          <ul class="job-points">
-            <li>Work directly with clients to gather requirements and turn them into configured, working solutions</li>
-            <li>Lead workshops and training sessions to get client teams up and running</li>
-            <li>Coordinate with project managers, QA and engineering to deliver projects smoothly and fix issues quickly</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="job">
-        <p class="job-dates">Feb 2023 – Jan 2025</p>
-        <div>
-          <h3>Applications Developer</h3>
-          <p class="job-company">St. Louis County</p>
-          <p class="job-note">Contract-to-hire through TEKsystems; brought on full-time after 2 months</p>
-          <ul class="job-points">
-            <li>Led the redesign of the county's <a href="https://aca-prod.accela.com/SLC/Default.aspx" target="_blank" rel="noopener">public-facing web portal<span class="visually-hidden"> (opens in new tab)</span></a> to match its new brand identity, using HTML and CSS</li>
-            <li>Partnered with multiple county departments to translate their processes into custom software workflows</li>
-            <li>Wrote JavaScript business logic and SQL to automate processes</li>
-            <li>Handled both day-to-day support tickets and larger projects</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <section id="agencies" class="agencies">
-      <h2 class="section-title">Working with agencies</h2>
-      <p class="agencies-intro">I fit into your team and process, so you can take on more work without hiring.</p>
-      <!-- TODO: confirm the hours and keep this current, or remove it -->
-      <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Taking on new projects · 10–20 hours per week</p>
-
-      <div class="agency-grid">
-        <div class="agency-item">
-          <h3>White-label friendly</h3>
-          <p>I work under your agency's name. Your clients see your team, not a subcontractor.</p>
-        </div>
-        <div class="agency-item">
-          <h3>NDA-ready</h3>
-          <p>Happy to sign NDAs and work within your contracts and processes.</p>
-        </div>
-        <div class="agency-item">
-          <h3>Your tools, not mine</h3>
-          <p>I join your Slack, Figma, GitHub and project boards, so there's no new workflow to learn.</p>
-        </div>
-        <div class="agency-item">
-          <h3>Clear communication</h3>
-          <p>Regular progress updates, early warning on blockers, and questions batched so they don't slow your team down.</p>
-        </div>
-        <div class="agency-item">
-          <h3>Client-ready</h3>
-          <p>I've led client workshops and requirements sessions, so I can join calls with your clients when you need me to.</p>
-        </div>
-        <div class="agency-item">
-          <!-- TODO: confirm you offer both pricing models -->
-          <h3>Flexible engagements</h3>
-          <p>Hourly or fixed-price, from a single landing page to ongoing overflow support.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer id="contact" class="site-footer">
-    <div class="wrapper contact">
-      <div>
-        <h2 class="contact-title">Contact</h2>
-        <p>Tell me about your project, or the overflow work you need covered, and
-          I’ll get back to you as soon as possible.</p>
-        <p class="contact-call">Prefer to talk first? Book a free 30-minute intro call.</p>
-        <!-- Opens the Calendly popup via index.js; without JavaScript it just opens the booking page -->
-        <a href="https://calendly.com/kadecampbelldev" class="link-underline js-calendly" target="_blank" rel="noopener">Book a call<span class="visually-hidden"> (opens scheduling)</span></a>
-      </div>
-
-      <form class="contact-form" id="my-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <!-- Netlify Forms: form-name must match the form's name attribute -->
-        <input type="hidden" name="form-name" value="contact">
-        <!-- Honeypot: hidden from people, bots that fill it in get discarded -->
-        <p hidden><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" name="name" autocomplete="name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="email" autocomplete="email" placeholder="Your email" required>
-        </div>
-        <div class="form-group">
-          <label for="company">Company / agency <span class="optional">(optional)</span></label>
-          <input type="text" class="form-control" id="company" name="company" autocomplete="organization" placeholder="Where you work">
-        </div>
-        <div class="form-row-pair">
-          <div class="form-group">
+        <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Contact form">
+          <!-- Netlify Forms: form-name must match the form's name attribute -->
+          <input type="hidden" name="form-name" value="contact">
+          <!-- Honeypot: hidden from people, bots that fill it in get discarded -->
+          <p hidden><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" required>
+          </div>
+          <div class="field">
+            <label for="company">Company / agency <span class="optional">(optional)</span></label>
+            <input type="text" id="company" name="company" autocomplete="organization" placeholder="Where you work">
+          </div>
+          <div class="field">
+            <label for="project-link">Design or site link <span class="optional">(optional)</span></label>
+            <!-- type="text" rather than "url" so "mysite.com" without https:// isn't rejected -->
+            <input type="text" inputmode="url" id="project-link" name="project-link" autocomplete="url" placeholder="Figma file, current site, etc.">
+          </div>
+          <div class="field">
             <label for="project-type">Project type <span class="optional">(optional)</span></label>
-            <select class="form-control" id="project-type" name="project-type">
+            <select id="project-type" name="project-type">
               <option value="">Choose one</option>
               <option>React web app</option>
               <option>Custom website</option>
@@ -396,33 +606,37 @@
               <option>Other</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="timeline">Timeline <span class="optional">(optional)</span></label>
-            <select class="form-control" id="timeline" name="timeline">
+            <select id="timeline" name="timeline">
               <option value="">Choose one</option>
               <option>ASAP</option>
               <option>Within a month</option>
               <option>Flexible</option>
             </select>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="project-link">Design or site link <span class="optional">(optional)</span></label>
-          <!-- type="text" rather than "url" so "mysite.com" without https:// isn't rejected -->
-          <input type="text" inputmode="url" class="form-control" id="project-link" name="project-link" autocomplete="url" placeholder="Figma file, current site, etc.">
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your message" required></textarea>
-        </div>
-        <p id="my-form-status" role="status"></p>
-        <button type="submit" class="link-underline" id="submit-button">Send message</button>
-      </form>
-    </div>
+          <div class="field field-full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="What are you working on?" required></textarea>
+          </div>
+          <div class="form-foot field-full">
+            <p id="form-status" class="form-status" role="status"></p>
+            <button type="submit" class="btn btn-white btn-lg" id="submit-button">Send message
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
 
-    <div class="wrapper footer-nav">
-      <a href="#" class="brand" aria-label="Kade Campbell, back to top">kadecampbell</a>
-    </div>
+  <footer class="container site-footer">
+    <p>© <span id="year">2026</span> Kade Campbell · Grimes, Iowa</p>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a></li>
+      <li><a href="https://github.com/KCampbell22" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in new tab)</span></a></li>
+      <li><a href="#">Back to top <span aria-hidden="true">↑</span></a></li>
+    </ul>
   </footer>
 
   <script src="./index.js"></script>
