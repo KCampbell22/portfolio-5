@@ -227,50 +227,99 @@ form.addEventListener("submit", (event) => {
 form.setAttribute("novalidate", "");
 
 /* ==========================================================================
-   Phones: sticky "Let's talk" button + full-screen contact dialog.
-   The one contact form is moved into the dialog while it's open and moved
+   Phones: sticky "Let's talk" button + contact form in a bottom sheet.
+   The one contact form is moved into the sheet while it's open and moved
    back afterwards, so Netlify still sees a single form in the page.
+
+   States:
+   - closed
+   - expanded:  modal sheet (page behind is dimmed and locked)
+   - minimized: slim bar at the bottom (page behind scrolls normally)
+   Switching between modal and non-modal means closing and re-opening the
+   <dialog>. Its close event arrives later, so when it does, a dialog that is
+   open again means it was one of those internal switches, not a real close.
    ========================================================================== */
 const contactDialog = document.querySelector("#contact-dialog");
 const mobileCta = document.querySelector(".mobile-cta");
 
-const closeContactDialog = () => {
-  if (contactDialog && contactDialog.open) contactDialog.close();
-};
+let closeContactDialog = () => {};
 
 if (contactDialog && mobileCta && typeof contactDialog.showModal === "function") {
   const ctaButton = mobileCta.querySelector("button");
   const slot = contactDialog.querySelector(".dialog-form-slot");
+  const head = contactDialog.querySelector(".dialog-head");
   const dialogTitle = contactDialog.querySelector("#contact-dialog-title");
+  const toggleButton = contactDialog.querySelector(".dialog-toggle");
   const formHome = document.createComment(" contact form returns here ");
   form.before(formHome);
+  dialogTitle.setAttribute("tabindex", "-1");
+
+  let state = "closed";
   let addedHistoryEntry = false;
 
-  ctaButton.addEventListener("click", () => {
-    slot.appendChild(form);
-    contactDialog.showModal();
-    root.classList.add("dialog-open");
-    contactDialog.scrollTop = 0;
+  const reopen = (modal) => {
+    if (contactDialog.open) contactDialog.close();
+    contactDialog.classList.toggle("is-minimized", !modal);
+    modal ? contactDialog.showModal() : contactDialog.show();
+  };
+
+  const expand = () => {
+    const fromClosed = state === "closed";
+    if (fromClosed) {
+      slot.appendChild(form);
+      // So the phone's back button closes the form instead of leaving the page
+      history.pushState({ contactDialog: true }, "");
+      addedHistoryEntry = true;
+    }
+    reopen(true);
+    state = "expanded";
+    root.classList.add("dialog-open", "sheet-active");
+    toggleButton.setAttribute("aria-label", "Minimize contact form");
+    if (fromClosed) contactDialog.scrollTop = 0;
     // Start screen readers at the title rather than popping the keyboard open
-    dialogTitle.setAttribute("tabindex", "-1");
-    dialogTitle.focus();
-    // So the phone's back button closes the form instead of leaving the page
-    history.pushState({ contactDialog: true }, "");
-    addedHistoryEntry = true;
-  });
+    dialogTitle.focus({ preventScroll: true });
+  };
 
+  const minimize = () => {
+    if (state !== "expanded") return;
+    reopen(false);
+    state = "minimized";
+    root.classList.remove("dialog-open"); // page can scroll again
+    toggleButton.setAttribute("aria-label", "Expand contact form");
+    toggleButton.focus({ preventScroll: true });
+  };
+
+  closeContactDialog = () => {
+    if (contactDialog.open) contactDialog.close();
+  };
+
+  ctaButton.addEventListener("click", expand);
   contactDialog.querySelector(".dialog-close").addEventListener("click", closeContactDialog);
+  toggleButton.addEventListener("click", () => (state === "expanded" ? minimize() : expand()));
 
-  // Tapping the dimmed page above the sheet closes it. Clicks on the backdrop
-  // report the dialog itself as the target; anything typed stays in the form.
-  contactDialog.addEventListener("click", (event) => {
-    if (event.target === contactDialog) closeContactDialog();
+  // Tapping the minimized bar (anywhere but its buttons) brings the sheet back up
+  head.addEventListener("click", (event) => {
+    if (state === "minimized" && !event.target.closest("button") && !dragMoved) expand();
   });
 
-  // Fires for the close button, Escape, and the back button alike
+  // Tapping the dimmed page above the expanded sheet closes it. Clicks on the
+  // backdrop report the dialog itself as the target; anything typed is kept.
+  contactDialog.addEventListener("click", (event) => {
+    if (event.target === contactDialog && state === "expanded") closeContactDialog();
+  });
+
+  // Escape closes it in either state (the minimized bar isn't modal, so handle it here)
+  contactDialog.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && state === "minimized") closeContactDialog();
+  });
+
+  // Fully closed: the close button, Escape, back button or tapping the dimmed page
   contactDialog.addEventListener("close", () => {
+    if (contactDialog.open) return; // re-opened as part of expand/minimize
+    state = "closed";
+    contactDialog.classList.remove("is-minimized");
     formHome.after(form);
-    root.classList.remove("dialog-open");
+    root.classList.remove("dialog-open", "sheet-active");
     if (addedHistoryEntry) {
       addedHistoryEntry = false;
       history.back();
@@ -281,9 +330,59 @@ if (contactDialog && mobileCta && typeof contactDialog.showModal === "function")
   window.addEventListener("popstate", () => {
     if (contactDialog.open) {
       addedHistoryEntry = false; // the browser already went back
-      contactDialog.close();
+      closeContactDialog();
     }
   });
+
+  // Links to the contact section bring the sheet back up while it's minimized,
+  // since the form is inside the sheet at that point
+  document.querySelectorAll('a[href="#contact"], a[href="#contact-form"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (state === "minimized") {
+        event.preventDefault();
+        expand();
+      }
+    });
+  });
+
+  // Drag the header: down to minimize, up (on the bar) to expand
+  let dragStartY = null;
+  let dragDy = 0;
+  let dragMoved = false;
+
+  head.addEventListener("pointerdown", (event) => {
+    if (event.target.closest("button") || state === "closed") return;
+    dragStartY = event.clientY;
+    dragDy = 0;
+    dragMoved = false;
+    head.setPointerCapture(event.pointerId);
+    contactDialog.style.transition = "none";
+  });
+
+  head.addEventListener("pointermove", (event) => {
+    if (dragStartY === null) return;
+    dragDy = event.clientY - dragStartY;
+    if (Math.abs(dragDy) > 6) dragMoved = true;
+    // The expanded sheet follows the finger downward
+    if (state === "expanded") {
+      contactDialog.style.transform = `translateY(${Math.max(0, dragDy)}px)`;
+    }
+  });
+
+  const endDrag = () => {
+    if (dragStartY === null) return;
+    dragStartY = null;
+    contactDialog.style.transition = "transform .2s ease";
+    contactDialog.style.transform = "";
+    setTimeout(() => { contactDialog.style.transition = ""; }, 200);
+
+    if (state === "expanded" && dragDy > 80) minimize();
+    else if (state === "minimized" && dragDy < -30) expand();
+    // Let the click that follows a drag through to the bar's tap handler only if it wasn't a drag
+    setTimeout(() => { dragMoved = false; }, 0);
+  };
+  head.addEventListener("pointerup", endDrag);
+  head.addEventListener("pointercancel", endDrag);
 
   // Show the button only between the hero and the contact section
   mobileCta.hidden = false;

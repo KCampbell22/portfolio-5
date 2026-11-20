@@ -654,11 +654,17 @@
        so there's only ever one form (Netlify needs it in the page HTML). -->
   <dialog id="contact-dialog" class="contact-dialog" aria-labelledby="contact-dialog-title">
     <div class="dialog-inner">
+      <!-- Drag this header down to minimize the sheet (or up, when minimized, to expand it) -->
       <div class="dialog-head">
         <h2 id="contact-dialog-title">Let's talk</h2>
-        <button type="button" class="dialog-close" aria-label="Close contact form">
-          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
+        <div class="dialog-actions">
+          <button type="button" class="dialog-btn dialog-toggle" aria-label="Minimize contact form">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <button type="button" class="dialog-btn dialog-close" aria-label="Close contact form">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
       </div>
       <p class="dialog-intro">Tell me about the project, or book a free 30-minute intro call instead.</p>
       <a href="https://calendly.com/kadecampbelldev" class="btn btn-ghost-dark js-calendly dialog-call" target="_blank" rel="noopener">Book an intro call<span class="visually-hidden"> (opens scheduling)</span>

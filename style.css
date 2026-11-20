@@ -1117,7 +1117,9 @@ main:focus { outline: none; }
   font-weight: 700;
   letter-spacing: -0.02em;
 }
-.dialog-close {
+.dialog-head { touch-action: none; } /* lets the header be dragged */
+.dialog-actions { display: flex; gap: 8px; }
+.dialog-btn {
   width: 44px; height: 44px;
   flex: none;
   display: inline-flex;
@@ -1141,6 +1143,48 @@ main:focus { outline: none; }
 /* Stop the page behind the dialog from scrolling (iOS ignores it otherwise) */
 html.dialog-open,
 html.dialog-open body { overflow: hidden; }
+
+/* Minimized: a slim bar along the bottom; the page behind stays usable.
+   The form is only hidden (not removed), so anything typed is kept. */
+.contact-dialog.is-minimized {
+  inset: auto 0 0 0;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -10px 30px rgba(10, 12, 25, .3);
+  z-index: 45;
+}
+.contact-dialog.is-minimized[open] { animation: peek-up .3s cubic-bezier(.2, .8, .2, 1); }
+.contact-dialog.is-minimized .dialog-inner {
+  min-height: 0;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  gap: 0;
+}
+.contact-dialog.is-minimized .dialog-inner > :not(.dialog-head) { display: none; }
+.contact-dialog.is-minimized .dialog-head { position: static; cursor: pointer; }
+.contact-dialog.is-minimized .dialog-head h2 { font-size: 22px; }
+.contact-dialog.is-minimized .dialog-toggle svg { transform: rotate(180deg); }
+.contact-dialog.is-minimized .dialog-head::before { display: block; }
+.dialog-toggle svg { transition: transform .2s; }
+
+/* Wider screens (e.g. a phone turned sideways): keep the bar centered */
+@media (min-width: 761px) {
+  .contact-dialog.is-minimized { width: min(640px, 100%); margin: 0 auto; }
+}
+
+@keyframes peek-up {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+
+/* While minimized, leave room so the bar never covers the end of the page */
+html.sheet-active:not(.dialog-open) body { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+
+/* The sticky "Let's talk" button steps aside while the sheet is open or minimized */
+html.sheet-active .mobile-cta { display: none !important; }
 
 /* ---------- Footer ---------- */
 
