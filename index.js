@@ -90,12 +90,14 @@ if (carousel) {
     return btn;
   });
 
-  function show(k, direction) {
+  function show(k, direction, initial) {
     const next = (k + n) % n;
     const dir = direction || (next > current ? 1 : -1);
 
     // Pause the Scheduler demo (or any video) when leaving its slide
     slides[current].querySelectorAll("video").forEach((v) => v.pause());
+    // Videos start with preload="none"; fetch the first frame once their slide is opened
+    slides[next].querySelectorAll('video[preload="none"]').forEach((v) => { v.preload = "metadata"; });
 
     slides.forEach((slide, i) => slide.classList.toggle("is-active", i === next));
     slides[next].style.setProperty("--from", `${dir * 24}px`);
@@ -105,14 +107,18 @@ if (carousel) {
     posEl.textContent = pad(current + 1);
     progressBar.style.width = `${Math.round(((current + 1) / n) * 100)}%`;
 
-    // Keep the active chip visible when the picker scrolls (phones)
-    const active = pickerButtons[current];
-    if (picker.scrollWidth > picker.clientWidth) {
-      picker.scrollTo({
-        left: active.offsetLeft - picker.clientWidth / 2 + active.offsetWidth / 2,
-        behavior: "smooth",
-      });
-    }
+    // Keep the active chip visible when the picker scrolls (phones).
+    // Skipped on page load: reading layout there forces an extra reflow.
+    if (initial) return;
+    requestAnimationFrame(() => {
+      const active = pickerButtons[current];
+      if (picker.scrollWidth > picker.clientWidth) {
+        picker.scrollTo({
+          left: active.offsetLeft - picker.clientWidth / 2 + active.offsetWidth / 2,
+          behavior: "smooth",
+        });
+      }
+    });
   }
 
   carousel.querySelector(".carousel-prev").addEventListener("click", () => show(current - 1, -1));
@@ -144,7 +150,7 @@ if (carousel) {
   });
   slidesWrap.addEventListener("pointercancel", () => { startX = null; });
 
-  show(0, 1);
+  show(0, 1, true);
 }
 
 /* ==========================================================================
