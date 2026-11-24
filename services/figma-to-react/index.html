@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Turn Figma designs into fast, accessible React apps and components. Freelance design-to-code development by Kade Campbell in Grimes near Des Moines, Iowa, and remote.">
+  <meta name="theme-color" content="#F7F8FC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1120" media="(prefers-color-scheme: dark)">
+  <title>Figma to React Development | Design-to-Code Developer, Des Moines</title>
+
+  <link rel="canonical" href="https://www.kadecampbelldev.com/services/figma-to-react/">
+
+  <!-- Link previews (LinkedIn, Slack, iMessage, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.kadecampbelldev.com/services/figma-to-react/">
+  <meta property="og:image" content="https://www.kadecampbelldev.com/images/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kade Campbell, freelance web developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Figma to React development | Kade Campbell">
+  <meta property="og:description" content="Turn Figma designs into fast, accessible React apps and components. Freelance design-to-code development by Kade Campbell in Grimes near Des Moines, Iowa, and remote.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Figma to React development",
+        "description": "Turn Figma designs into fast, accessible React apps and components. Freelance design-to-code development by Kade Campbell in Grimes near Des Moines, Iowa, and remote.",
+        "url": "https://www.kadecampbelldev.com/services/figma-to-react/",
+        "serviceType": "Figma to React development",
+        "provider": {
+          "@id": "https://www.kadecampbelldev.com/#business"
+        },
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Des Moines, IA"
+          },
+          {
+            "@type": "Country",
+            "name": "United States"
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.kadecampbelldev.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://www.kadecampbelldev.com/#services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Figma to React",
+            "item": "https://www.kadecampbelldev.com/services/figma-to-react/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Set the theme before first paint so the page doesn't flash.
+       Dark from 7pm to 7am on the visitor's clock, unless they picked a theme this visit
+       (keep the hours in sync with NIGHT_START / NIGHT_END in index.js). -->
+  <script>
+    (function () {
+      var saved = null;
+      try {
+        saved = sessionStorage.getItem("theme");
+        localStorage.removeItem("theme"); // older versions remembered the choice forever
+      } catch (e) {}
+      var hour = new Date().getHours();
+      var dark = saved ? saved === "dark" : (hour >= 19 || hour < 7);
+      document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="/images/favIcon.ico">
+
+  <link rel="stylesheet" href="/style.css">
+  <script src="/index.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <div class="nav-wrap">
+    <header class="site-header">
+      <a href="/" class="brand">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        kadecampbell.dev<span class="visually-hidden">, home</span>
+      </a>
+
+      <button type="button" class="icon-btn menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <svg class="icon-open" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <svg class="icon-close" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile">
+        <a href="/#projects"><span class="num">01</span>Work</a>
+        <a href="/#about"><span class="num">02</span>About</a>
+        <a href="/#experience"><span class="num">03</span>Experience</a>
+        <a href="/#services"><span class="num">04</span>Services</a>
+        <a href="/#contact"><span class="num">05</span>Contact</a>
+        <div class="mobile-menu-actions">
+          <a href="/#contact" class="btn btn-accent">Let's talk</a>
+          <button type="button" class="icon-btn theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
+            <svg class="icon-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="icon-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          </button>
+        </div>
+        <div class="mobile-menu-socials">
+          <a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a href="https://github.com/KCampbell22" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in new tab)</span></a>
+        </div>
+      </nav>
+
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="/#projects">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#services">Services</a>
+        <button type="button" class="icon-btn theme-toggle" aria-pressed="false" aria-label="Switch to dark theme">
+          <svg class="icon-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a href="/#contact" class="btn btn-ink nav-cta">Let's talk</a>
+      </nav>
+    </header>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <section class="container page-hero" aria-labelledby="page-title">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li aria-current="page">Figma to React</li>
+        </ol>
+      </nav>
+      <h1 id="page-title" class="hero-title"><span class="hero-kicker">Services · Design to code</span> Figma to React development</h1>
+      <p class="hero-text">Send me a Figma (or Photoshop) file and get back a React build that matches it: responsive, accessible, and organized into components your team can reuse. I'm a freelance front-end and React developer based in Grimes, near Des Moines, Iowa, working remotely.</p>
+      <div class="btn-row">
+        <a href="https://calendly.com/kadecampbelldev" class="btn btn-accent btn-lg js-calendly" target="_blank" rel="noopener">Book a free intro call<span class="visually-hidden"> (opens scheduling)</span>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="/#projects" class="btn btn-outline btn-lg">See my work</a>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="included-title">
+      <h2 id="included-title" class="section-title">What's included</h2>
+      <div class="page-cols">
+        <article class="card">
+          <h3>What you get</h3>
+          <ul class="check-list">
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Pixel-close React components built from your Figma file</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Responsive behavior for the breakpoints that aren't in the design</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Reusable components that follow your design system</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Accessible markup: semantic HTML, focus states, ARIA where needed</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Plain HTML, CSS and JavaScript instead, if the project doesn't need React</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Good fit for</h3>
+          <ul class="check-list">
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Agencies with designs ready and no developer free</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Product teams starting or extending a component library</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Startups turning a Figma prototype into a working app</li>
+            <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Existing sites being redesigned to a new brand</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="process-title">
+      <h2 id="process-title" class="section-title">How it works</h2>
+      <ol class="steps">
+        <li class="card">
+          <h3>Review the file</h3>
+          <p>I go through the design, flag missing states (hover, error, empty, mobile) and confirm the stack.</p>
+        </li>
+        <li class="card">
+          <h3>Set up components</h3>
+          <p>Shared pieces such as buttons, inputs and cards come first, so pages go together fast.</p>
+        </li>
+        <li class="card">
+          <h3>Build the pages</h3>
+          <p>Screens are built from those components and checked against the design at every size.</p>
+        </li>
+        <li class="card">
+          <h3>Polish &amp; hand off</h3>
+          <p>Accessibility and performance passes, then clean code and notes for your team.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="container section" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="section-title">Questions</h2>
+      <div class="faq">
+        <details class="card">
+          <summary>Do my designs need to be perfect first?</summary>
+          <p>No. I'll point out gaps like missing mobile layouts or states and either fill them in sensibly or check with your designer.</p>
+        </details>
+        <details class="card">
+          <summary>Can you work inside our existing React codebase?</summary>
+          <p>Yes. I can follow your conventions and component library, or set up a new project if you're starting fresh.</p>
+        </details>
+        <details class="card">
+          <summary>Do you only build in React?</summary>
+          <p>No. If the project is better as a fast static site, I'll build it in semantic HTML, CSS and JavaScript.</p>
+        </details>
+        <details class="card">
+          <summary>Will it be accessible?</summary>
+          <p>Accessibility is part of every build: semantic HTML, keyboard support, visible focus and sensible ARIA, with WCAG in mind.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="related-title">
+      <h2 id="related-title" class="section-title">Other services</h2>
+      <div class="related-list">
+        <a href="/services/white-label-development/" class="btn btn-outline">White-label development</a>
+        <a href="/services/landing-pages/" class="btn btn-outline">Landing pages</a>
+        <a href="/#services" class="btn btn-outline">All services</a>
+      </div>
+    </section>
+
+    <section class="container section contact-section" aria-labelledby="cta-title">
+      <div class="contact-band">
+        <div class="contact-dots" aria-hidden="true"></div>
+        <div class="contact-head">
+          <div class="contact-copy">
+            <p class="eyebrow eyebrow-on-dark">contact</p>
+            <h2 id="cta-title">Have a project in mind? Let's talk.</h2>
+            <p>Tell me about it, or grab a free 30-minute intro call. I'll get back to you as soon as possible.</p>
+          </div>
+          <div class="btn-row">
+            <a href="https://calendly.com/kadecampbelldev" class="btn btn-lavender btn-lg js-calendly" target="_blank" rel="noopener">Book an intro call<span class="visually-hidden"> (opens scheduling)</span>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="/#contact-form" class="btn btn-ghost-dark btn-lg">Send a message</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container site-footer">
+    <p>© <span id="year">2026</span> Kade Campbell · Grimes, Iowa</p>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/kade-campbell-21a3601aa/" target="_blank" rel="noopener">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a></li>
+      <li><a href="https://github.com/KCampbell22" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in new tab)</span></a></li>
+      <li><a href="#">Back to top <span aria-hidden="true">↑</span></a></li>
+    </ul>
+  </footer>
+</body>
+</html>

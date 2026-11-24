@@ -6,7 +6,7 @@
   <meta name="description" content="Kade Campbell, freelance web developer in Grimes, Iowa (Des Moines area): React apps, custom websites, Figma-to-code, landing pages and accessibility for agencies and businesses.">
   <meta name="theme-color" content="#F7F8FC" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0F1120" media="(prefers-color-scheme: dark)">
-  <title>Kade Campbell | Freelance Web Developer – React &amp; Front-End</title>
+  <title>Kade Campbell | Freelance Web Developer in Des Moines, IA – React &amp; Front-End</title>
 
   <link rel="canonical" href="https://www.kadecampbelldev.com/">
 
@@ -24,26 +24,64 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kade Campbell",
-    "url": "https://www.kadecampbelldev.com/",
-    "image": "https://www.kadecampbelldev.com/images/headshot.jpg",
-    "jobTitle": "Freelance Web Developer",
-    "description": "Freelance front-end and React developer building fast, accessible websites and web apps for agencies and businesses.",
-    "areaServed": [
-      { "@type": "City", "name": "Des Moines, IA" },
-      { "@type": "Country", "name": "United States" }
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Grimes",
-      "addressRegion": "IA",
-      "addressCountry": "US"
-    },
-    "knowsAbout": ["React", "JavaScript", "HTML", "CSS", "SQL", "Figma", "Photoshop", "Web Accessibility", "Front-End Performance"],
-    "sameAs": [
-      "https://www.linkedin.com/in/kade-campbell-21a3601aa/",
-      "https://github.com/KCampbell22"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.kadecampbelldev.com/#kade",
+        "name": "Kade Campbell",
+        "url": "https://www.kadecampbelldev.com/",
+        "image": "https://www.kadecampbelldev.com/images/headshot.jpg",
+        "jobTitle": "Freelance Web Developer",
+        "description": "Freelance front-end and React developer building fast, accessible websites and web apps for agencies and businesses.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Grimes",
+          "addressRegion": "IA",
+          "addressCountry": "US"
+        },
+        "knowsAbout": ["React", "JavaScript", "HTML", "CSS", "SQL", "Figma", "Photoshop", "Web Accessibility", "Front-End Performance"],
+        "sameAs": [
+          "https://www.linkedin.com/in/kade-campbell-21a3601aa/",
+          "https://github.com/KCampbell22"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.kadecampbelldev.com/#business",
+        "name": "Kade Campbell – Freelance Web Developer",
+        "url": "https://www.kadecampbelldev.com/",
+        "image": "https://www.kadecampbelldev.com/images/share.jpg",
+        "description": "Freelance web development in the Des Moines area and remote: React apps, custom websites, Figma-to-code, landing pages and accessibility, including white-label work for agencies.",
+        "founder": { "@id": "https://www.kadecampbelldev.com/#kade" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Grimes",
+          "addressRegion": "IA",
+          "addressCountry": "US"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Des Moines, IA" },
+          { "@type": "City", "name": "Grimes, IA" },
+          { "@type": "City", "name": "Ankeny, IA" },
+          { "@type": "City", "name": "West Des Moines, IA" },
+          { "@type": "City", "name": "Urbandale, IA" },
+          { "@type": "City", "name": "Johnston, IA" },
+          { "@type": "Country", "name": "United States" }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Web development services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "White-label web development for agencies", "url": "https://www.kadecampbelldev.com/services/white-label-development/" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Figma to React development", "url": "https://www.kadecampbelldev.com/services/figma-to-react/" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing pages for small businesses", "url": "https://www.kadecampbelldev.com/services/landing-pages/" } }
+          ]
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/kade-campbell-21a3601aa/",
+          "https://github.com/KCampbell22"
+        ]
+      }
     ]
   }
   </script>
@@ -535,6 +573,7 @@
             </span>
             <h3>Custom web &amp; React development</h3>
             <p>Semantic HTML, CSS and JavaScript with no bloated templates, plus React apps and component libraries built to your design system.</p>
+            <a href="/services/figma-to-react/" class="service-link">Figma to React <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
           <ul class="service-list">
             <li>React web apps</li>
@@ -557,6 +596,7 @@
           </span>
           <h3>Integrations &amp; launch</h3>
           <p>Headless CMS, payments and SaaS APIs, plus high-converting landing pages ready to ship.</p>
+          <a href="/services/landing-pages/" class="service-link">Landing pages <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
 
         <article class="card service service-wide service-agencies">
@@ -570,6 +610,7 @@
             <!-- TODO: confirm you offer both pricing models -->
             <li><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Hourly or fixed-price</li>
           </ul>
+          <a href="/services/white-label-development/" class="service-link">White-label development for agencies <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
       </div>
     </section>

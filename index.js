@@ -304,51 +304,54 @@ if (carousel) {
 /* ==========================================================================
    Contact form validation (Netlify Forms handles the actual submission)
    ========================================================================== */
+// Only the home page has the form; the service pages skip this
 const form = document.querySelector("#contact-form");
-const formStatus = document.querySelector("#form-status");
-const nameInput = document.querySelector("#name");
-const emailInput = document.querySelector("#email");
-const messageInput = document.querySelector("#message");
-const emailFormat =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+if (form) {
+  const formStatus = document.querySelector("#form-status");
+  const nameInput = document.querySelector("#name");
+  const emailInput = document.querySelector("#email");
+  const messageInput = document.querySelector("#message");
+  const emailFormat =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-const checks = [
-  [nameInput, () => nameInput.value.trim() !== ""],
-  [emailInput, () => emailFormat.test(emailInput.value.trim())],
-  [messageInput, () => messageInput.value.trim() !== ""],
-];
+  const checks = [
+    [nameInput, () => nameInput.value.trim() !== ""],
+    [emailInput, () => emailFormat.test(emailInput.value.trim())],
+    [messageInput, () => messageInput.value.trim() !== ""],
+  ];
 
-// Color alone isn't announced by screen readers, so aria-invalid drives the styling
-const markField = (input, isValid) => input.setAttribute("aria-invalid", String(!isValid));
+  // Color alone isn't announced by screen readers, so aria-invalid drives the styling
+  const markField = (input, isValid) => input.setAttribute("aria-invalid", String(!isValid));
 
-checks.forEach(([input, isValid]) => {
-  input.addEventListener("input", () => {
-    // Only start flagging once someone has typed or tried to submit
-    if (input.value !== "" || input.hasAttribute("aria-invalid")) markField(input, isValid());
-  });
-});
-
-form.addEventListener("submit", (event) => {
-  let firstInvalid = null;
   checks.forEach(([input, isValid]) => {
-    const ok = isValid();
-    markField(input, ok);
-    if (!ok && !firstInvalid) firstInvalid = input;
+    input.addEventListener("input", () => {
+      // Only start flagging once someone has typed or tried to submit
+      if (input.value !== "" || input.hasAttribute("aria-invalid")) markField(input, isValid());
+    });
   });
 
-  if (firstInvalid) {
-    event.preventDefault();
-    formStatus.textContent = "Please fill in your name, a valid email and a message.";
-    formStatus.className = "form-status is-error";
-    firstInvalid.focus();
-  } else {
-    formStatus.textContent = "Sending…";
-    formStatus.className = "form-status";
-  }
-});
+  form.addEventListener("submit", (event) => {
+    let firstInvalid = null;
+    checks.forEach(([input, isValid]) => {
+      const ok = isValid();
+      markField(input, ok);
+      if (!ok && !firstInvalid) firstInvalid = input;
+    });
 
-// Let the JS messages above handle errors instead of the browser's bubbles
-form.setAttribute("novalidate", "");
+    if (firstInvalid) {
+      event.preventDefault();
+      formStatus.textContent = "Please fill in your name, a valid email and a message.";
+      formStatus.className = "form-status is-error";
+      firstInvalid.focus();
+    } else {
+      formStatus.textContent = "Sending…";
+      formStatus.className = "form-status";
+    }
+  });
+
+  // Let the JS messages above handle errors instead of the browser's bubbles
+  form.setAttribute("novalidate", "");
+}
 
 /* ==========================================================================
    Phones: sticky "Let's talk" button + contact form in a bottom sheet.
@@ -565,4 +568,5 @@ document.querySelectorAll(".js-calendly").forEach((link) => {
 /* ==========================================================================
    Footer year
    ========================================================================== */
-document.querySelector("#year").textContent = new Date().getFullYear();
+const yearEl = document.querySelector("#year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();

@@ -988,6 +988,66 @@ main:focus { outline: none; }
 .check-list li { display: flex; gap: 10px; align-items: center; }
 .check-list svg { flex: none; color: var(--accent-text); }
 
+/* "Learn more" link from a service card to its own page */
+.service-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent-text);
+  text-underline-offset: 4px;
+}
+.service-link svg { transition: transform .15s; }
+.service-link:hover svg { transform: translateX(3px); }
+
+/* ---------- Service pages (/services/...) ---------- */
+
+.page-hero { padding-top: 72px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 24px; max-width: 860px; }
+.page-hero .hero-title { font-size: 56px; }
+.page-hero .hero-text { max-width: 680px; }
+
+.breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.breadcrumbs li + li::before { content: "/"; margin-right: 8px; }
+.breadcrumbs a { color: inherit; text-underline-offset: 3px; }
+
+.page-cols { display: flex; flex-wrap: wrap; gap: 16px; }
+.page-cols > .card { flex: 1 1 340px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+.page-cols h3 { font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.2; }
+.page-cols p { font-size: 16px; line-height: 1.6; color: var(--muted); }
+.page-cols .check-list { grid-template-columns: minmax(0, 1fr); align-items: start; }
+.page-cols .check-list li { align-items: flex-start; line-height: 1.5; }
+.page-cols .check-list svg { margin-top: 4px; }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; counter-reset: step; }
+.steps li { padding: 28px; display: flex; flex-direction: column; gap: 10px; counter-increment: step; }
+.steps li::before { content: "0" counter(step); font-family: var(--font-mono); font-size: 14px; color: var(--accent-text); }
+.steps h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+.steps p { font-size: 15px; line-height: 1.6; color: var(--muted); }
+
+.faq { display: flex; flex-direction: column; gap: 12px; max-width: 860px; }
+.faq details { padding: 0 28px; }
+.faq summary {
+  padding: 22px 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  list-style-position: outside;
+}
+.faq details p { padding-bottom: 24px; font-size: 16px; line-height: 1.6; color: var(--muted); }
+
+.related-list { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (max-width: 760px) {
+  .page-hero { padding-top: 48px; padding-bottom: 56px; }
+  .page-hero .hero-title { font-size: 38px; }
+  .page-cols > .card, .steps li { padding: 24px; }
+  .faq details { padding: 0 20px; }
+}
+
 /* ---------- Contact ---------- */
 
 .contact-section { padding-bottom: 80px; }
