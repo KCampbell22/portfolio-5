@@ -246,7 +246,7 @@ if (carousel) {
     if (!under.classList.contains("is-behind")) setBehind(under);
     const progress = Math.min(1, Math.abs(dx) / (width * 0.5));
     under.style.transition = "none";
-    under.style.transform = `translateY(${14 * (1 - progress)}px) scale(${0.95 + 0.05 * progress})`;
+    under.style.transform = `translateY(${14 * (1 - progress)}px) scale(${0.9 + 0.1 * progress})`;
   });
 
   const endDrag = (cancelled) => {

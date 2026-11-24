@@ -741,12 +741,21 @@ main:focus { outline: none; }
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 14px;
     z-index: 1;
-    transform: translateY(14px) scale(.95);
+    transform: translateY(14px) scale(.9);
     box-shadow: var(--highlight), var(--shadow-md);
     pointer-events: none;
     animation: none;
   }
-  .js .slide.is-behind > * { opacity: .55; }
+  /* Fade the card underneath with an overlay rather than opacity on its
+     children: iOS Safari stops clipping translucent children to the rounded
+     overflow, so a taller project's content leaked out below the top card */
+  .js .slide.is-behind::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--card);
+    opacity: .45;
+  }
 
   /* When the card underneath becomes the active one */
   .js .slide.is-active[data-enter="stack"] { animation: stack-in .32s cubic-bezier(.2, .8, .2, 1); }
@@ -755,7 +764,7 @@ main:focus { outline: none; }
 }
 
 @keyframes stack-in {
-  from { transform: translateY(14px) scale(.95); }
+  from { transform: translateY(14px) scale(.9); }
   to { transform: none; }
 }
 
