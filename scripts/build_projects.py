@@ -367,8 +367,9 @@ def page_html(p, others):
   {ld_text}
   </script>
 
-{theme_script}  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/x-icon" href="/images/favIcon.ico">
+{theme_script}  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <link rel="stylesheet" href="/style.css">
   <script src="/index.js" defer></script>
