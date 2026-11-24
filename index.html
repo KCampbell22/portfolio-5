@@ -188,7 +188,7 @@
       <div class="section-head">
         <h2 id="projects-title" class="section-title">Things I've built</h2>
         <div class="carousel-controls">
-          <p class="carousel-count" aria-live="polite"><span class="carousel-pos">01</span> / <span class="carousel-total">09</span></p>
+          <p class="carousel-count" aria-live="polite"><span class="carousel-pos">01</span> / <span class="carousel-total">10</span></p>
           <button type="button" class="nav-btn carousel-prev" aria-label="Previous project">
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
@@ -199,6 +199,27 @@
       </div>
 
       <div class="slides">
+        <article class="slide" data-short="StowList" data-hue="200" aria-roledescription="slide">
+          <div class="slide-media">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+              <img src="./images/stowlist-1080.webp" srcset="./images/stowlist-640.webp 640w, ./images/stowlist-1080.webp 1080w" sizes="(max-width: 760px) calc(100vw - 96px), 540px" width="1080" height="720" loading="lazy" decoding="async" alt="Three phone screens of StowList: a list of storage boxes with search, a box's items with a photo and its QR label, and the page for printing QR labels">
+            </div>
+          </div>
+          <div class="slide-body">
+            <p class="kicker">Full-stack web app</p>
+            <h3>StowList</h3>
+            <p class="slide-desc">Stick a QR label on any box, scan it with your phone, and see what's inside. Mobile-first app with accounts, item photos, search across every box and printable label sheets. Each user's data is locked down with Postgres row-level security.</p>
+            <ul class="tags" aria-label="Technologies"><li>React</li><li>Supabase</li><li>PostgreSQL</li><li>Vite</li></ul>
+            <div class="btn-row">
+              <a href="https://stowlist-kadecampbell.netlify.app/" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: StowList (opens in new tab)</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+              <a href="https://github.com/KCampbell22/StowList" class="btn btn-outline" target="_blank" rel="noopener">GitHub repo<span class="visually-hidden">: StowList (opens in new tab)</span></a>
+            </div>
+          </div>
+        </article>
+
         <article class="slide" data-short="St. Louis County" data-hue="245" aria-roledescription="slide">
           <div class="slide-media">
             <div class="browser">
@@ -207,9 +228,10 @@
             </div>
           </div>
           <div class="slide-body">
-            <p class="kicker">Client work</p>
+            <p class="kicker">Employer project</p>
             <h3>St. Louis County Portal</h3>
-            <p class="slide-desc">Redesigned the county's public permitting and contractor licensing portal to match its new brand, customizing the Accela Citizen Access platform.</p>
+            <p class="slide-desc">As an applications developer at St. Louis County, I led the redesign of the county's public permitting and contractor licensing portal to match its new brand, customizing the Accela Citizen Access platform.</p>
+            <p class="slide-note">Built while employed by St. Louis County. The portal and its branding belong to the county.</p>
             <ul class="tags" aria-label="Technologies"><li>HTML</li><li>CSS</li><li>Accela</li></ul>
             <div class="btn-row">
               <a href="https://aca-prod.accela.com/SLC/Default.aspx" class="btn btn-ink" target="_blank" rel="noopener">Visit live site<span class="visually-hidden">: St. Louis County Portal (opens in new tab)</span>

@@ -677,6 +677,7 @@ main:focus { outline: none; }
 }
 .slide-desc { font-size: 17px; line-height: 1.6; color: var(--muted); }
 .slide-desc a { color: var(--accent-text); text-underline-offset: 3px; }
+.slide-note { font-size: 13px; line-height: 1.5; color: var(--muted); }
 .slide-body .btn-row { padding-top: 8px; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
