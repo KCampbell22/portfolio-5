@@ -116,7 +116,11 @@ PROJECTS = [
                     "<strong>Built to be found:</strong> structured data, link previews, a sitemap, and service and case-study pages like this one.",
                 ]),
             ]),
-            # TODO: add Lighthouse scores or Core Web Vitals once measured on the live site
+            ("Before the redesign", [
+                "The previous version was a dark-only page with a grid of project cards, and it loaded the full Bootstrap stylesheet from a CDN. The redesign added a light theme with automatic dark mode, a sharper pitch aimed at agencies, the swipeable project stack and a contact form that works well on phones. It also dropped the framework CSS and switched to compressed self-hosted fonts and responsive WebP images.",
+                '<a href="/archive/2026-11-13/">See the archived version of the old site</a>, kept exactly as it was apart from a banner and a disabled contact form.',
+            ]),
+            # TODO: add Lighthouse scores or Core Web Vitals once measured on the live site, ideally before vs after
         ],
     },
     {
