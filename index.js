@@ -124,6 +124,7 @@ if (carousel) {
     slides.forEach((slide) => {
       const behind = slide === target && stackMode.matches;
       slide.classList.toggle("is-behind", behind);
+      slide.classList.remove("is-revealed");
       if (behind) slide.setAttribute("inert", ""); else slide.removeAttribute("inert");
       if (!behind) slide.style.removeProperty("transform");
     });
@@ -180,6 +181,7 @@ if (carousel) {
     const target = (current + step + n) % n;
     const width = slidesWrap.offsetWidth;
     setBehind(slides[target]);
+    slides[target].classList.add("is-revealed");
     // Grow the card underneath into place while the top card flies away
     slides[target].style.transition = "transform .3s cubic-bezier(.2, .8, .2, 1)";
     slides[target].style.transform = "none";
@@ -244,6 +246,7 @@ if (carousel) {
     // Show the card you'd land on, growing as you drag further
     const under = slides[(current + (dx < 0 ? 1 : -1) + n) % n];
     if (!under.classList.contains("is-behind")) setBehind(under);
+    under.classList.add("is-revealed");
     const progress = Math.min(1, Math.abs(dx) / (width * 0.5));
     under.style.transition = "none";
     under.style.transform = `translateY(${14 * (1 - progress)}px) scale(${0.9 + 0.1 * progress})`;

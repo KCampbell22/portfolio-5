@@ -756,6 +756,10 @@ main:focus { outline: none; }
     background: var(--card);
     opacity: .45;
   }
+  /* At rest only the bottom edge of the card underneath shows, and its own
+     content (sized for a different project) would be cut off mid-way there.
+     Keep it blank until a swipe or arrow press actually reveals it. */
+  .js .slide.is-behind:not(.is-revealed) > * { visibility: hidden; }
 
   /* When the card underneath becomes the active one */
   .js .slide.is-active[data-enter="stack"] { animation: stack-in .32s cubic-bezier(.2, .8, .2, 1); }
